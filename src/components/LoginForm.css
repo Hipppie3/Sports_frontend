@@ -1,0 +1,97 @@
+/* Login.css */
+
+.login-container-custom {
+ width: 300px;
+ margin: 50px auto;
+ padding: 20px;
+ border: 1px solid #ccc;
+ border-radius: 10px;
+ background-color: #f9f9f9;
+ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+ margin-top: 15rem;
+}
+
+.login-container-custom h2 {
+ text-align: center;
+ margin-bottom: 20px;
+}
+
+.login-form-custom {
+ display: flex;
+ flex-direction: column;
+}
+
+.form-group-custom {
+ margin-bottom: 15px;
+}
+
+.form-group-custom label {
+ display: block;
+ margin-bottom: 5px;
+}
+
+.form-group-custom input {
+ width: 100%;
+ padding: 8px;
+ border: 1px solid #ccc;
+ border-radius: 5px;
+}
+
+button {
+ padding: 10px;
+ background-color: #333;
+ color: white;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+ font-size: 16px;
+}
+
+.error-message-custom {
+ color: red;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+ .login-container-custom {
+  width: 80%;
+  margin-top: 10rem;
+  padding: 15px;
+ }
+
+ .login-container-custom h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+ }
+
+ .form-group-custom input {
+  padding: 6px;
+ }
+
+ button {
+  padding: 8px;
+  font-size: 14px;
+ }
+}
+
+@media (max-width: 480px) {
+ .login-container-custom {
+  width: 90%;
+  margin-top: 8rem;
+  padding: 10px;
+ }
+
+ .login-container-custom h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+ }
+
+ .form-group-custom input {
+  padding: 5px;
+ }
+
+ button {
+  padding: 6px;
+  font-size: 12px;
+ }
+}

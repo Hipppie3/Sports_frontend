@@ -1,0 +1,50 @@
+/* Navbar.css */
+
+.navbar-custom {
+ background-color: #333;
+ padding: 10px 0;
+ width: 100%;
+ position: fixed;
+ top: 0;
+ left: 0;
+ z-index: 1000;
+ height: 60px;
+ /* Set the height of the navbar */
+ display: flex;
+ align-items: center;
+ /* Center items vertically */
+}
+
+.nav-list-custom {
+ list-style: none;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ /* Center items vertically */
+ margin: 0;
+ padding: 0 20px;
+ margin-left: 2rem;
+ width: 100%;
+ /* Ensure the list takes full width */
+}
+
+.nav-item-custom {
+ margin: 0;
+}
+
+.nav-link-custom {
+ color: white;
+ text-decoration: none;
+ transition: all 0.3s ease;
+ padding: 15px 0;
+ /* Add padding to center text vertically */
+}
+
+.nav-link-custom:hover {
+ text-decoration: underline;
+}
+
+.nav-link-custom.active {
+ font-weight: bold;
+}
+
