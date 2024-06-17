@@ -1,38 +1,46 @@
-// src/components/LoginForm.jsx
-
 import React, { useState } from 'react';
-import './LoginForm.css'
+import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
+import './LoginForm.css';
 
 const LoginForm = () => {
-  const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const { isAuthenticated, login, username: contextUsername } = useAuth();
 
-  const handleToggle = () => {
-    setIsLogin(!isLogin);
-    setUsername('');
-    setPassword('');
-    setConfirmPassword('');
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isLogin) {
-      // Handle login logic here
-    } else {
-      // Handle registration logic here
-      if (password !== confirmPassword) {
-        setError('Passwords do not match');
-        return;
+    setError('');
+
+    try {
+      // Log only in development mode
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Sending login request with:', { username, password });
       }
+
+      const response = await axios.post('http://localhost:3000/api/auth/login', { username, password });
+
+      if (response.status === 200) {
+        console.log('Login successful:', response.data);
+        alert('Logged in successfully');
+        login(username); // Pass the username to the login function
+      } else {
+        throw new Error(response.data.message || 'Login failed');
+      }
+    } catch (err) {
+      console.log('Login error:', err.response?.data?.message || err.message);
+      setError('YOU SHALL NOT PASS!!!');
     }
   };
 
+  if (isAuthenticated) {
+    return <div className="login-container-custom"><h2>Welcome, {contextUsername}!</h2></div>;
+  }
+
   return (
     <div className="login-container-custom">
-      <h2>{isLogin ? 'Login' : 'Register'}</h2>
+      <h2>Login</h2>
       <form className="login-form-custom" onSubmit={handleSubmit}>
         <div className="form-group-custom">
           <label>Username</label>
@@ -52,25 +60,8 @@ const LoginForm = () => {
             required
           />
         </div>
-        {!isLogin && (
-          <div className="form-group-custom">
-            <label>Confirm Password</label>
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-          </div>
-        )}
-        <button type="submit" className="login-button">{isLogin ? 'Login' : 'Register'}</button>
-        <p className="error-message-custom">{error}</p>
-        <p>
-          {isLogin ? "Don't have an account?" : 'Already have an account?'}{' '}
-          <button type="button" onClick={handleToggle}>
-            {isLogin ? 'Register' : 'Login'}
-          </button>
-        </p>
+        <button type="submit" className="login-button">Login</button>
+        {error && <p className="error-message-custom">{error}</p>}
       </form>
     </div>
   );
