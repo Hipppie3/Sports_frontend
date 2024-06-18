@@ -9,10 +9,8 @@
  left: 0;
  z-index: 1000;
  height: 60px;
- /* Set the height of the navbar */
  display: flex;
  align-items: center;
- /* Center items vertically */
 }
 
 .nav-list-custom {
@@ -20,16 +18,16 @@
  display: flex;
  justify-content: space-between;
  align-items: center;
- /* Center items vertically */
  margin: 0;
  padding: 0 20px;
  margin-left: 2rem;
  width: 100%;
- /* Ensure the list takes full width */
 }
 
 .nav-item-custom {
  margin: 0;
+ position: relative;
+ /* Required for positioning the dropdown */
 }
 
 .nav-link-custom {
@@ -37,7 +35,6 @@
  text-decoration: none;
  transition: all 0.3s ease;
  padding: 15px 0;
- /* Add padding to center text vertically */
 }
 
 .nav-link-custom:hover {
@@ -48,3 +45,27 @@
  font-weight: bold;
 }
 
+.dropdown-menu-custom {
+ position: absolute;
+ top: 100%;
+ left: 0;
+ background-color: #333;
+ list-style: none;
+ padding: 0;
+ margin: 0;
+ width: 150px;
+ box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+ z-index: 1000;
+}
+
+.dropdown-link-custom {
+ display: block;
+ padding: 10px 15px;
+ color: white;
+ text-decoration: none;
+ transition: background-color 0.3s ease;
+}
+
+.dropdown-link-custom:hover {
+ background-color: #444;
+}

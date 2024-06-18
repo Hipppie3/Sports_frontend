@@ -1,0 +1,20 @@
+/* src/pages/Players.css */
+
+.players-list {
+ list-style: none;
+ padding: 0;
+}
+
+.player-item {
+ border: 1px solid #ccc;
+ padding: 10px;
+ margin: 10px 0;
+ border-radius: 5px;
+}
+
+.player-image {
+ width: 100px;
+ height: auto;
+ display: block;
+ margin-top: 10px;
+}
