@@ -5,7 +5,9 @@ import Home from './pages/Home';
 import Players from './pages/Players';
 import LoginForm from './components/LoginForm';
 import PlayerForm from './forms/PlayerForm';
-import './App.css'; // Make sure to import your App.css
+import StatForm from './forms/StatForm'; 
+import PlayerDetails from './pages/PlayerDetails'; 
+import './App.css';
 
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
           <Route path="/players" element={<Players />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/player-form" element={<PlayerForm />} />
+          <Route path="/player/:id" element={<PlayerDetails />} /> 
+          <Route path="/stats-form" element={<StatForm />} /> 
         </Routes>
       </div>
     </>

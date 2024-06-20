@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './Players.css';
 import searchImage from '../images/search.png';
 import defaultImage from '../images/defaultImage.png';
@@ -53,25 +54,29 @@ const Players = () => {
         {filteredPlayers.length > 0 ? (
           filteredPlayers.map((player) => (
             <li key={player.id} className="player-item">
-              <img 
-                src={player.image ? `data:image/jpeg;base64,${player.image}` : defaultImage} 
-                alt="Player" 
-                className="player-image" 
-              />
-              <p>{player.first_name} {player.last_name}</p>
-              <p>{player.sport}</p>
+              <Link to={`/player/${player.id}`} className="player-link">
+                <img 
+                  src={player.image ? `data:image/jpeg;base64,${player.image}` : defaultImage} 
+                  alt="Player" 
+                  className="player-image" 
+                />
+                <p className="player-name">{player.first_name} {player.last_name}</p>
+                <p className="player-sport">{player.sport}</p>
+              </Link>
             </li>
           ))
         ) : (
           players.map((player) => (
             <li key={player.id} className="player-item">
-              <img 
-                src={player.image ? `data:image/jpeg;base64,${player.image}` : defaultImage} 
-                alt="Player" 
-                className="player-image" 
-              />
-              <p>{player.first_name} {player.last_name}</p>
-              <p>{player.sport}</p>
+              <Link to={`/player/${player.id}`} className="player-link">
+                <img 
+                  src={player.image ? `data:image/jpeg;base64,${player.image}` : defaultImage} 
+                  alt="Player" 
+                  className="player-image" 
+                />
+                <p className="player-name">{player.first_name} {player.last_name}</p>
+                <p className="player-sport">{player.sport}</p>
+              </Link>
             </li>
           ))
         )}

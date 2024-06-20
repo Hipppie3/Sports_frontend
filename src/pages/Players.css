@@ -15,7 +15,6 @@
 .search-bar {
  width: 100%;
  padding: 20px 40px 20px 10px;
- /* Add padding to the right for the icon */
  font-size: 16px;
  border-radius: 5px;
  border: 1px solid #ccc;
@@ -29,7 +28,6 @@
  width: 20px;
  height: 20px;
  pointer-events: none;
- /* Ensure the icon does not interfere with input focus */
 }
 
 .players-list {
@@ -38,7 +36,6 @@
  display: flex;
  flex-wrap: wrap;
  justify-content: flex-start;
- /* Align items to the start of the container */
 }
 
 .player-item {
@@ -48,13 +45,44 @@
  margin-bottom: 20px;
 }
 
+.player-link {
+ display: block;
+ text-decoration: none;
+ /* Remove underline */
+ color: inherit;
+ /* Ensure link color matches text color */
+}
+.player-link:hover {
+ transform: scale(1.1);
+}
+
 .player-image {
  width: 150px;
  height: 150px;
  display: block;
- margin: 0 auto 10px;
+ margin: 0 auto;
  border-radius: 50%;
  object-fit: cover;
+ transition: transform 0.3s ease-in-out;
+}
+
+.player-name,
+.player-sport {
+ padding: 0;
+ margin: 0;
+}
+
+.player-name {
+ margin-top: 8px;
+ /* Adjust this value as needed */
+ font-size: 20px;
+}
+
+.player-sport {
+ margin-top: 2px;
+ /* Adjust this value as needed */
+ font-size: 14px;
+ color: #151414;
 }
 
 @media (max-width: 1024px) {

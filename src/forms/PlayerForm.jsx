@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './PlayerForm.css';
 import defaultImage from '../images/defaultImage.png'; // Ensure the correct path to your default image
+import SearchImage from '../images/search.png'; // Ensure the correct path to your search image
 
 const PlayerForm = () => {
   const [players, setPlayers] = useState([]);
@@ -81,9 +82,16 @@ const PlayerForm = () => {
   };
 
   const handleEdit = (player) => {
-    setPlayer(player);
-    setEditing(true);
-    setEditingId(player.id);
+    if (editingId === player.id) {
+      // If the same player is clicked again, clear the form
+      setPlayer({ first_name: '', last_name: '', position: '', sport: '', image: null });
+      setEditing(false);
+      setEditingId(null);
+    } else {
+      setPlayer(player);
+      setEditing(true);
+      setEditingId(player.id);
+    }
   };
 
   const handleDelete = async (id) => {
@@ -99,27 +107,27 @@ const PlayerForm = () => {
   };
 
   return (
-    <div className="player-form-page">
-      <h2>{editing ? 'Edit Player' : 'Add Player'}</h2>
-      <form onSubmit={handleSubmit} className="player-form">
-        <div className="form-row">
-          <div className="form-group">
+    <div className="player-form-page-unique">
+      <h2>{editing ? 'Update Player' : 'Add Player'}</h2>
+      <form onSubmit={handleSubmit} className="player-form-unique">
+        <div className="form-row-unique">
+          <div className="form-group-unique">
             <label>First Name:</label>
             <input type="text" name="first_name" value={player.first_name} onChange={handleChange} required />
           </div>
-          <div className="form-group">
+          <div className="form-group-unique">
             <label>Last Name:</label>
             <input type="text" name="last_name" value={player.last_name} onChange={handleChange} required />
           </div>
-          <div className="form-group">
+          <div className="form-group-unique">
             <label>Position:</label>
             <input type="text" name="position" value={player.position} onChange={handleChange} />
           </div>
-          <div className="form-group">
+          <div className="form-group-unique">
             <label>Sport:</label>
             <input type="text" name="sport" value={player.sport} onChange={handleChange} />
           </div>
-          <div className="form-group">
+          <div className="form-group-unique">
             <label>Image:</label>
             <input type="file" name="image" onChange={handleImageChange} />
           </div>
@@ -128,28 +136,30 @@ const PlayerForm = () => {
       </form>
 
       <h2>Players List</h2>
-      <div className="search-container">
+      <div className="search-container-unique">
         <input
           type="text"
           placeholder="Search by first or last name"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="search-bar"
+          className="search-bar-unique"
         />
-        <img src="/path/to/your/icon.png" alt="Search Icon" className="search-icon" />
+        <img src={SearchImage} alt="Search Icon" className="search-icon-unique" />
       </div>
-      <ul className="player-form-list">
+      <ul className="player-form-list-unique">
         {(filteredPlayers.length > 0 ? filteredPlayers : players).map((player) => (
-          <li key={player.id} className="player-form-item">
+          <li key={player.id} className="player-form-item-unique">
             <img 
               src={player.image ? `data:image/jpeg;base64,${player.image}` : defaultImage} 
               alt="Player" 
-              className="player-form-image" 
+              className="player-form-image-unique" 
             />
-            <p>{player.first_name} {player.last_name}</p>
-            <p>{player.sport}</p>
-            <button className="playerFormEditBtn" onClick={() => handleEdit(player)}>Edit</button>
-            <button className="playerFormDeleteBtn" onClick={() => handleDelete(player.id)}>Delete</button>
+            <p className="player-name-unique">{player.first_name} {player.last_name}</p>
+            <p className="player-sport-unique">{player.sport}</p>
+            <button className="player-form-edit-btn-unique" onClick={() => handleEdit(player)}>
+              {editingId === player.id ? 'Unedit' : 'Edit'}
+            </button>
+            <button className="player-form-delete-btn-unique" onClick={() => handleDelete(player.id)}>Delete</button>
           </li>
         ))}
       </ul>

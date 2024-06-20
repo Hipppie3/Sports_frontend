@@ -1,37 +1,36 @@
-.player-form-page {
+.player-form-page-unique {
  max-width: 1200px;
  margin: 0 auto;
  padding: 20px;
  text-align: center;
 }
 
-.player-form {
+.player-form-unique {
  display: flex;
  flex-direction: column;
  align-items: center;
  margin-bottom: 20px;
 }
 
-.form-row {
+.form-row-unique {
  display: flex;
  flex-wrap: wrap;
  justify-content: center;
  width: 100%;
 }
 
-.form-group {
+.form-group-unique {
  margin: 10px;
  flex: 1;
  min-width: 150px;
 }
 
-.player-form label {
+.player-form-unique label {
  display: block;
  margin-bottom: 5px;
 }
 
-.player-form input[type="text"],
-.player-form input[type="file"] {
+.player-form-unique input[type="text"] {
  width: 100%;
  padding: 8px;
  font-size: 16px;
@@ -39,7 +38,15 @@
  border: 1px solid #ccc;
 }
 
-.player-form button {
+.player-form-unique input[type="file"] {
+  width: 100%;
+  padding: 5px;
+  font-size: 17px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+ }
+
+.player-form-unique button {
  margin: 10px;
  margin-bottom: 3rem;
  padding: 10px 20px;
@@ -51,14 +58,14 @@
  cursor: pointer;
 }
 
-.search-container {
+.search-container-unique {
  position: relative;
  display: inline-block;
  width: 50%;
  margin-bottom: 30px;
 }
 
-.search-bar {
+.search-bar-unique {
  width: 100%;
  padding: 10px 40px 10px 10px;
  font-size: 16px;
@@ -66,7 +73,7 @@
  border: 1px solid #ccc;
 }
 
-.search-icon {
+.search-icon-unique {
  position: absolute;
  right: -40px;
  top: 50%;
@@ -76,11 +83,11 @@
  pointer-events: none;
 }
 
-.playerFormEditBtn {
+.player-form-edit-btn-unique {
  margin-right: .2rem;
 }
 
-.player-form-list {
+.player-form-list-unique {
  list-style: none;
  padding: 0;
  display: flex;
@@ -89,14 +96,14 @@
  /* Align items to the start of the container */
 }
 
-.player-form-item {
+.player-form-item-unique {
  text-align: center;
  width: 22%;
  box-sizing: border-box;
  margin-bottom: 20px;
 }
 
-.player-form-image {
+.player-form-image-unique {
  width: 100px;
  height: 100px;
  display: block;
@@ -105,20 +112,30 @@
  object-fit: cover;
 }
 
+.player-name-unique {
+ margin-bottom: 3px;
+ margin-top: 0;
+}
+
+.player-sport-unique {
+ margin-bottom: 3px;
+ margin-top: 0;
+}
+
 @media (max-width: 1024px) {
- .player-form-item {
+ .player-form-item-unique {
   width: 30%;
  }
 }
 
 @media (max-width: 768px) {
- .player-form-item {
+ .player-form-item-unique {
   width: 45%;
  }
 }
 
 @media (max-width: 480px) {
- .player-form-item {
+ .player-form-item-unique {
   width: 100%;
  }
 }
