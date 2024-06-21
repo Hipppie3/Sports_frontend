@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import defaultImage from '../images/defaultImage.png';
-import './PlayerDetails.css';
+import './PlayerStats.css';
 
-const PlayerDetails = () => {
+const PlayerStats = () => {
   const { id } = useParams();
   const [player, setPlayer] = useState(null);
   const [stats, setStats] = useState([]);
@@ -31,55 +31,33 @@ const PlayerDetails = () => {
     }
   };
 
-const fetchPlayerStats = async () => {
-  try {
-    const response = await axios.get(`http://localhost:3000/api/stats/${id}`);
-    const sortedStats = response.data.sort((a, b) => new Date(a.game_date) - new Date(b.game_date));
-    const latestFiveStats = sortedStats.slice(-5);
-    setStats(latestFiveStats);
+  const fetchPlayerStats = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/api/stats/${id}`);
+      const sortedStats = response.data.sort((a, b) => new Date(a.game_date) - new Date(b.game_date));
+      setStats(sortedStats);
 
-    const totalGames = sortedStats.length;
-    if (totalGames > 0) {
-      const totalPoints = sortedStats.reduce((sum, stat) => sum + stat.pts, 0);
-      const totalRebounds = sortedStats.reduce((sum, stat) => sum + stat.reb, 0);
-      const totalAssists = sortedStats.reduce((sum, stat) => sum + stat.ast, 0);
-      const totalSteals = sortedStats.reduce((sum, stat) => sum + stat.stl, 0);
-      const totalBlocks = sortedStats.reduce((sum, stat) => sum + stat.blk, 0);
-      const totalTurnovers = sortedStats.reduce((sum, stat) => sum + stat.tov, 0);
+      const totalGames = sortedStats.length;
+      if (totalGames > 0) {
+        const totalPoints = sortedStats.reduce((sum, stat) => sum + stat.pts, 0);
+        const totalRebounds = sortedStats.reduce((sum, stat) => sum + stat.reb, 0);
+        const totalAssists = sortedStats.reduce((sum, stat) => sum + stat.ast, 0);
+        const totalSteals = sortedStats.reduce((sum, stat) => sum + stat.stl, 0);
+        const totalBlocks = sortedStats.reduce((sum, stat) => sum + stat.blk, 0);
+        const totalTurnovers = sortedStats.reduce((sum, stat) => sum + stat.tov, 0);
 
-      setAverages({
-        ppg: (totalPoints / totalGames).toFixed(1),
-        rpg: (totalRebounds / totalGames).toFixed(1),
-        apg: (totalAssists / totalGames).toFixed(1),
-        spg: (totalSteals / totalGames).toFixed(1),
-        bpg: (totalBlocks / totalGames).toFixed(1),
-        tpg: (totalTurnovers / totalGames).toFixed(1),
-      });
+        setAverages({
+          ppg: (totalPoints / totalGames).toFixed(1),
+          rpg: (totalRebounds / totalGames).toFixed(1),
+          apg: (totalAssists / totalGames).toFixed(1),
+          spg: (totalSteals / totalGames).toFixed(1),
+          bpg: (totalBlocks / totalGames).toFixed(1),
+          tpg: (totalTurnovers / totalGames).toFixed(1),
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching stats:', error);
     }
-  } catch (error) {
-    console.error('Error fetching stats:', error);
-  }
-};
-
-
-
-  const handleMouseDown = (e) => {
-    const tableContainer = e.target.closest('.player-stats-table-container');
-    tableContainer.dataset.isDragging = true;
-    tableContainer.dataset.startX = e.pageX - tableContainer.scrollLeft;
-  };
-
-  const handleMouseMove = (e) => {
-    const tableContainer = document.querySelector('.player-stats-table-container');
-    if (tableContainer.dataset.isDragging === 'true') {
-      const x = e.pageX - tableContainer.dataset.startX;
-      tableContainer.scrollLeft = -x;
-    }
-  };
-
-  const handleMouseUp = () => {
-    const tableContainer = document.querySelector('.player-stats-table-container');
-    tableContainer.dataset.isDragging = false;
   };
 
   if (!player) {
@@ -87,16 +65,17 @@ const fetchPlayerStats = async () => {
   }
 
   return (
-    <div className="player-details-container">
-
-      <img 
-        src={player.image ? `data:image/jpeg;base64,${player.image}` : defaultImage} 
-        alt="Player" 
-        className="player-image" 
-      />
-      <h2>{player.first_name} {player.last_name}</h2>
-      <p>Position: {player.position}</p>
-      <p>Sport: {player.sport}</p>
+    <div className="player-stats-page">
+      <div className="player-details-container">
+        <img 
+          src={player.image ? `data:image/jpeg;base64,${player.image}` : defaultImage} 
+          alt="Player" 
+          className="player-image" 
+        />
+        <h2>{player.first_name} {player.last_name}</h2>
+        <p>Position: {player.position}</p>
+        <p>Sport: {player.sport}</p>
+      </div>
 
 <div className="boxes-container">
   <div className="box"></div>
@@ -145,25 +124,17 @@ const fetchPlayerStats = async () => {
   <div className="box"></div>
 </div>
 
-
-      
       <div className="player-links-container">
         <ul>
-          <li><Link to={`/player/${id}`} className="active-link">Profile</Link></li>
-          <li><Link to={`/stats/${id}`}>Stats</Link></li>
+          <li><Link to={`/player/${id}`}>Profile</Link></li>
+          <li><Link to={`/stats/${id}`} className="active-link">Stats</Link></li>
           <li><Link to={`/videos/${id}`}>Videos</Link></li>
         </ul>
       </div>
 
       <div className="section-container">
-        <div 
-          className="player-stats-table-container" 
-          onMouseDown={handleMouseDown} 
-          onMouseMove={handleMouseMove} 
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
-        >
-          <h3 className="last-5">LAST 5 GAMES</h3>
+        <div className="player-stats-table-container">
+          <h3 className="all-stats">ALL STATS</h3>
           {stats.length > 0 ? (
             <table className="player-stats-table">
               <thead>
@@ -224,17 +195,8 @@ const fetchPlayerStats = async () => {
           )}
         </div>
       </div>
-
-      <div className="section-container">
-        <div className="player-videos-container">
-          <h3>LATEST VIDEOS</h3>
-
-            <p>No videos available for this player.</p>
-
-        </div>
-      </div>
     </div>
   );
 };
 
-export default PlayerDetails;
+export default PlayerStats;

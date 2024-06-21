@@ -1,0 +1,154 @@
+.player-details-container {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ width: 100%;
+}
+
+.player-stats-table-container {
+ overflow-x: auto;
+ white-space: nowrap;
+ cursor: grab;
+ max-width: 100%;
+ margin: 20px 0;
+}
+
+.player-stats-table-container:active {
+ cursor: grabbing;
+}
+
+.player-stats-table {
+ border-collapse: collapse;
+ width: 100%;
+}
+
+.player-stats-th,
+.player-stats-td {
+ border-top: 1px solid #ddd;
+ /* Add border only on the top */
+ border-left: none;
+ border-right: none;
+ padding: 6px;
+ font-size: 14px;
+ text-align: center;
+ /* Center the content horizontally */
+ vertical-align: middle;
+ /* Center the content vertically */
+}
+
+.player-stats-th {
+ background-color: #f2f2f2;
+ text-align: left;
+}
+
+.player-videos-container,
+.player-links-container {
+ width: 100%;
+ max-width: 800px;
+ margin: 20px 0;
+}
+
+.player-videos-container ul,
+.player-links-container ul {
+ list-style-type: none;
+ padding: 0;
+}
+
+.player-videos-container li,
+.player-links-container li {
+ margin: 10px 0;
+}
+
+.player-links-container {
+ width: 100%;
+ max-width: 100%;
+ height: 3rem;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ background-color: #f9f9f9;
+ border: 1px solid #ddd;
+ padding: 1rem 0;
+ box-sizing: border-box;
+ margin: 0;
+ /* Remove margin */
+}
+
+.player-links-container ul {
+ display: flex;
+ justify-content: flex-start;
+ width: 100%;
+ margin: 0;
+}
+
+.player-links-container li {
+ margin: 0 2rem;
+}
+
+.player-links-container a {
+ text-decoration: none;
+ color: #030303;
+}
+
+.player-links-container a:hover {
+ text-decoration: underline;
+}
+
+.active-link {
+ font-weight: bold;
+ text-decoration: underline;
+ color: black;
+}
+
+.section-container {
+ width: 90%;
+ border: 1px solid #ddd;
+ margin: 20px 0;
+ padding: 10px 20px;
+}
+
+.last-5 {
+ margin: 0 0 5px 0;
+}
+
+.boxes-container {
+ width: 100%;
+ max-width: 100%;
+ height: 9rem;
+ display: flex;
+ align-items: center;
+ background-color: #f9f9f9;
+ border: 1px solid #ddd;
+ box-sizing: border-box;
+ margin-bottom: 0;
+ /* Remove bottom margin */
+}
+
+.box {
+ flex: 1;
+ height: 100%;
+ background-color: #e0e0e0;
+ box-sizing: border-box;
+ border-right: 1px solid white;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ font-weight: 600;
+ font-size: 17px;
+}
+
+.box:last-child {
+ border-right: none;
+}
+
+.box span {
+ font-weight: 900;
+ font-size: 25px;
+}
+
+
+.box span .decimal {
+ margin-left: 2px;
+ /* Adjust space between decimal and fractional part */
+}

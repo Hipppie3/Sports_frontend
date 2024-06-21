@@ -7,6 +7,7 @@ import LoginForm from './components/LoginForm';
 import PlayerForm from './forms/PlayerForm';
 import StatForm from './forms/StatForm'; 
 import PlayerDetails from './pages/PlayerDetails'; 
+import PlayerStats from './pages/PlayerStats';
 import './App.css';
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/player-form" element={<PlayerForm />} />
           <Route path="/player/:id" element={<PlayerDetails />} /> 
+          <Route path="/stats/:id" element={<PlayerStats />} />
           <Route path="/stats-form" element={<StatForm />} /> 
         </Routes>
       </div>
