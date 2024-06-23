@@ -76,6 +76,7 @@ const Players = () => {
                 />
                 <p className="player-name">{player.first_name} {player.last_name}</p>
                 <p className="player-sport">{player.sport}</p>
+                <p className="player-team">{player.team_name}</p>
               </Link>
             </li>
           ))

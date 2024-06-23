@@ -6,7 +6,8 @@ import SearchImage from '../images/search.png'; // Ensure the correct path to yo
 
 const PlayerForm = () => {
   const [players, setPlayers] = useState([]);
-  const [player, setPlayer] = useState({ first_name: '', last_name: '', position: '', sport: '', image: null });
+  const [teams, setTeams] = useState([]); // State to store teams
+  const [player, setPlayer] = useState({ first_name: '', last_name: '', position: '', sport: '', image: null, team_id: '' });
   const [editing, setEditing] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [search, setSearch] = useState('');
@@ -14,6 +15,7 @@ const PlayerForm = () => {
 
   useEffect(() => {
     fetchPlayers();
+    fetchTeams(); // Fetch teams on mount
   }, []);
 
   useEffect(() => {
@@ -38,6 +40,15 @@ const PlayerForm = () => {
     }
   };
 
+  const fetchTeams = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/api/teams');
+      setTeams(response.data);
+    } catch (error) {
+      console.error('Error fetching teams:', error);
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setPlayer({ ...player, [name]: value });
@@ -54,6 +65,7 @@ const PlayerForm = () => {
     formData.append('last_name', player.last_name);
     formData.append('position', player.position);
     formData.append('sport', player.sport);
+    formData.append('team_id', player.team_id);
     if (player.image) {
       formData.append('image', player.image);
     }
@@ -74,7 +86,7 @@ const PlayerForm = () => {
           },
         });
       }
-      setPlayer({ first_name: '', last_name: '', position: '', sport: '', image: null });
+      setPlayer({ first_name: '', last_name: '', position: '', sport: '', image: null, team_id: '' });
       fetchPlayers();
     } catch (error) {
       console.error('Error saving player:', error);
@@ -84,7 +96,7 @@ const PlayerForm = () => {
   const handleEdit = (player) => {
     if (editingId === player.id) {
       // If the same player is clicked again, clear the form
-      setPlayer({ first_name: '', last_name: '', position: '', sport: '', image: null });
+      setPlayer({ first_name: '', last_name: '', position: '', sport: '', image: null, team_id: '' });
       setEditing(false);
       setEditingId(null);
     } else {
@@ -128,6 +140,15 @@ const PlayerForm = () => {
             <input type="text" name="sport" value={player.sport} onChange={handleChange} />
           </div>
           <div className="form-group-unique">
+            <label>Team:</label>
+            <select name="team_id" value={player.team_id} onChange={handleChange} required>
+              <option value="">Select a team</option>
+              {teams.map((team) => (
+                <option key={team.id} value={team.id}>{team.name}</option>
+              ))}
+            </select>
+          </div>
+          <div className="form-group-unique">
             <label>Image:</label>
             <input type="file" name="image" onChange={handleImageChange} />
           </div>
@@ -154,8 +175,10 @@ const PlayerForm = () => {
               alt="Player" 
               className="player-form-image-unique" 
             />
+            {console.log(player)}
             <p className="player-name-unique">{player.first_name} {player.last_name}</p>
             <p className="player-sport-unique">{player.sport}</p>
+            <p className="player-team-unique">{player.team_name}</p>
             <button className="player-form-edit-btn-unique" onClick={() => handleEdit(player)}>
               {editingId === player.id ? 'Unedit' : 'Edit'}
             </button>

@@ -192,7 +192,6 @@ const PlayerDetails = () => {
           />
           <h2>{player.first_name} {player.last_name}</h2>
           <p>Position: {player.position}</p>
-          <p>Sport: {player.sport}</p>
         </div>
 
         <div className="player-stats-container">
@@ -346,7 +345,7 @@ const PlayerDetails = () => {
 
       <div className="section-container-video">
         <div className="player-videos-container1">
-          <h3>LATEST VIDEOS</h3>
+          <h3 className='latest-video-title'>LATEST VIDEOS</h3>
           {videos.length > 0 ? (
             <div className="video-list">
               {videos.map((video) => (

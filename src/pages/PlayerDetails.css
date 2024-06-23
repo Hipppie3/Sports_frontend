@@ -19,6 +19,11 @@
   width: 45%;
 }
 
+.latest-video-title {
+  padding-left: .5rem;
+  font-size: 20px;
+}
+
 .player-stats-container {
   display: flex;
   flex-direction: column;
@@ -130,7 +135,7 @@
   max-width: 100%;
 }
 .all-stats {
-  margin: 0 0 5px 0;
+ padding-bottom: 1rem;
 }
 
 .boxes-container {

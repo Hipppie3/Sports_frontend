@@ -85,6 +85,13 @@
  color: #151414;
 }
 
+.player-team {
+  margin-top: 2px;
+   /* Adjust this value as needed */
+   font-size: 14px;
+   color: #151414;
+}
+
 @media (max-width: 1024px) {
  .player-item {
   width: 30%;

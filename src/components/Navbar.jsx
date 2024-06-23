@@ -32,7 +32,8 @@ const Navbar = () => {
                 <ul className="dropdown-menu-custom">
                   <li><Link to="/player-form" className="dropdown-link-custom">Player Form</Link></li>
                   <li><Link to="/stats-form" className="dropdown-link-custom">Stats Form</Link></li>
-                  <li><Link to="/video-form" className="dropdown-link-custom">Video Form</Link></li> {/* Add link to VideoForm */}
+                  <li><Link to="/video-form" className="dropdown-link-custom">Video Form</Link></li>
+                  <li><Link to="/team-form" className="dropdown-link-custom">Team Form</Link></li>
                 </ul>
               )}
             </li>
