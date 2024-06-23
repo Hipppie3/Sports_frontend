@@ -34,6 +34,7 @@ const Navbar = () => {
                   <li><Link to="/stats-form" className="dropdown-link-custom">Stats Form</Link></li>
                   <li><Link to="/video-form" className="dropdown-link-custom">Video Form</Link></li>
                   <li><Link to="/team-form" className="dropdown-link-custom">Team Form</Link></li>
+                  <li><Link to="/game-form" className="dropdown-link-custom">Game Form</Link></li>
                 </ul>
               )}
             </li>

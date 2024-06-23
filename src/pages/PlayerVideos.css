@@ -124,8 +124,8 @@
  margin: 20px 0;
  padding: 10px 20px;
  display: flex;
- flex-wrap: wrap;
  justify-content: flex-start;
+ flex-direction:column;
  overflow-x: auto;
 }
 

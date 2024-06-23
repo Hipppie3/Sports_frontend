@@ -129,6 +129,7 @@
   padding: 10px 20px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   overflow-x: auto;
 }
 .player-videos-container1{

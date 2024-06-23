@@ -1,0 +1,140 @@
+.game-form-page-unique {
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 20px;
+ text-align: center;
+}
+
+.game-form-unique {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ margin-bottom: 20px;
+}
+
+.form-row-unique {
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: center;
+ width: 100%;
+}
+
+.form-group-unique {
+ margin: 10px;
+ flex: 1;
+ min-width: 150px;
+}
+
+.game-form-unique label {
+ display: block;
+ margin-bottom: 5px;
+}
+
+.game-form-unique input[type="text"],
+.game-form-unique input[type="date"],
+.game-form-unique input[type="time"],
+.game-form-unique input[type="number"],
+.game-form-unique input[type="url"],
+.game-form-unique select {
+ width: 100%;
+ padding: 8px;
+ font-size: 16px;
+ border-radius: 5px;
+ border: 1px solid #ccc;
+}
+
+.game-form-unique button {
+ margin: 10px;
+ margin-bottom: 3rem;
+ padding: 10px 20px;
+ font-size: 16px;
+ border-radius: 5px;
+ border: none;
+ background-color: #007BFF;
+ color: white;
+ cursor: pointer;
+}
+
+.search-container-unique {
+ position: relative;
+ display: inline-block;
+ width: 50%;
+ margin-bottom: 30px;
+}
+
+.search-bar-unique {
+ width: 100%;
+ padding: 10px 40px 10px 10px;
+ font-size: 16px;
+ border-radius: 5px;
+ border: 1px solid #ccc;
+}
+
+.search-icon-unique {
+ position: absolute;
+ right: -40px;
+ top: 50%;
+ transform: translateY(-50%);
+ width: 20px;
+ height: 20px;
+ pointer-events: none;
+}
+
+.game-form-list-unique {
+ list-style: none;
+ padding: 0;
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: flex-start;
+}
+
+.game-form-item-unique {
+ text-align: center;
+ width: 22%;
+ box-sizing: border-box;
+ margin-bottom: 20px;
+}
+
+.game-date-unique,
+.game-time-unique,
+.game-teams-unique,
+.game-location-unique {
+ margin-bottom: 3px;
+ margin-top: 0;
+}
+
+.game-form-edit-btn-unique,
+.game-form-delete-btn-unique {
+ margin-right: 0.2rem;
+}
+
+.date-picker-container-unique {
+ margin-bottom: 20px;
+ display: flex;
+ justify-content: center;
+}
+
+.date-picker-unique {
+ padding: 10px;
+ font-size: 16px;
+ border-radius: 5px;
+ border: 1px solid #ccc;
+}
+
+@media (max-width: 1024px) {
+ .game-form-item-unique {
+  width: 30%;
+ }
+}
+
+@media (max-width: 768px) {
+ .game-form-item-unique {
+  width: 45%;
+ }
+}
+
+@media (max-width: 480px) {
+ .game-form-item-unique {
+  width: 100%;
+ }
+}

@@ -4,8 +4,10 @@ import './StatForm.css';
 
 const StatForm = ({ initialStatData }) => {
   const [players, setPlayers] = useState([]);
+  const [games, setGames] = useState([]);
   const [stats, setStats] = useState([]);
   const [playerId, setPlayerId] = useState(initialStatData?.player_id || '');
+  const [gameId, setGameId] = useState(initialStatData?.game_id || '');
   const [gameDate, setGameDate] = useState(initialStatData?.game_date || '');
   const [twoPm, setTwoPm] = useState(initialStatData?.two_pm || '');
   const [twoPa, setTwoPa] = useState(initialStatData?.two_pa || '');
@@ -22,10 +24,11 @@ const StatForm = ({ initialStatData }) => {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [selectedGameDate, setSelectedGameDate] = useState(null);
-  const [statId, setStatId] = useState(null); // Add statId state
+  const [statId, setStatId] = useState(null);
 
   useEffect(() => {
     fetchPlayers();
+    fetchGames();
   }, []);
 
   useEffect(() => {
@@ -43,22 +46,31 @@ const StatForm = ({ initialStatData }) => {
     }
   };
 
-const fetchPlayerStats = async () => {
-  try {
-    const response = await axios.get(`http://localhost:3000/api/stats/${playerId}`);
-    const sortedStats = response.data.sort((a, b) => new Date(a.game_date) - new Date(b.game_date));
-    setStats(sortedStats);
-  } catch (error) {
-    console.error('Error fetching stats:', error);
-  }
-};
+  const fetchGames = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/api/games');
+      setGames(response.data);
+    } catch (error) {
+      console.error('Error fetching games:', error);
+    }
+  };
 
+  const fetchPlayerStats = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/api/stats/${playerId}`);
+      const sortedStats = response.data.sort((a, b) => new Date(a.game_date) - new Date(b.game_date));
+      setStats(sortedStats);
+    } catch (error) {
+      console.error('Error fetching stats:', error);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formData = {
       player_id: playerId,
+      game_id: gameId,
       game_date: gameDate,
       two_pm: parseInt(twoPm || '0', 10),
       two_pa: parseInt(twoPa || '0', 10),
@@ -74,7 +86,6 @@ const fetchPlayerStats = async () => {
       tov: parseInt(tov || '0', 10),
     };
 
-    // Validation
     if (formData.two_pm > formData.two_pa) {
       setErrorMessage('2PM cannot be greater than 2PA.');
       return;
@@ -96,10 +107,8 @@ const fetchPlayerStats = async () => {
 
     try {
       if (statId) {
-        // Update existing stats
         await axios.put(`http://localhost:3000/api/stats/${statId}`, formData);
       } else {
-        // Create new stats
         await axios.post('http://localhost:3000/api/stats', formData);
       }
       setSuccessMessage('Stats added successfully');
@@ -107,44 +116,45 @@ const fetchPlayerStats = async () => {
       setTimeout(() => {
         setSuccessMessage('');
       }, 3000);
-      fetchPlayerStats(); // Refresh the stats after submitting
-      handleClearForm(); // Clear the form after submission
+      fetchPlayerStats();
+      handleClearForm();
     } catch (error) {
       console.error('Error submitting form:', error);
     }
   };
 
-const handleEdit = (stat) => {
-  if (statId === stat.id) {
-    handleClearForm(); // If the same stat is clicked again, clear the form
-  } else {
-    setStatId(stat.id); // Set statId for the stat being edited
-    setPlayerId(stat.player_id);
-    setGameDate(stat.game_date.split('T')[0]);
-    setTwoPm(stat.two_pm);
-    setTwoPa(stat.two_pa);
-    setThreePm(stat.three_pm);
-    setThreePa(stat.three_pa);
-    setFtm(stat.ftm);
-    setFta(stat.fta);
-    setOreb(stat.oreb);
-    setDreb(stat.dreb);
-    setAst(stat.ast);
-    setStl(stat.stl);
-    setBlk(stat.blk);
-    setTov(stat.tov);
-    setSelectedGameDate(stat.game_date);
-  }
-};
-
+  const handleEdit = (stat) => {
+    if (statId === stat.id) {
+      handleClearForm();
+    } else {
+      setStatId(stat.id);
+      setPlayerId(stat.player_id);
+      setGameId(stat.game_id);
+      setGameDate(stat.game_date.split('T')[0]);
+      setTwoPm(stat.two_pm);
+      setTwoPa(stat.two_pa);
+      setThreePm(stat.three_pm);
+      setThreePa(stat.three_pa);
+      setFtm(stat.ftm);
+      setFta(stat.fta);
+      setOreb(stat.oreb);
+      setDreb(stat.dreb);
+      setAst(stat.ast);
+      setStl(stat.stl);
+      setBlk(stat.blk);
+      setTov(stat.tov);
+      setSelectedGameDate(stat.game_date);
+    }
+  };
 
   const handleUnedit = () => {
-    handleClearForm(); // Clear the form
+    handleClearForm();
   };
 
   const handleClearForm = () => {
-    setStatId(null); // Clear statId
+    setStatId(null);
     setGameDate('');
+    setGameId('');
     setTwoPm('');
     setTwoPa('');
     setThreePm('');
@@ -169,7 +179,7 @@ const handleEdit = (stat) => {
       setTimeout(() => {
         setSuccessMessage('');
       }, 3000);
-      fetchPlayerStats(); // Refresh the stats after deleting
+      fetchPlayerStats();
     } catch (error) {
       console.error('Error deleting stats:', error);
     }
@@ -177,9 +187,9 @@ const handleEdit = (stat) => {
 
   const handleGameDateClick = (gameDate) => {
     if (selectedGameDate === gameDate) {
-      setSelectedGameDate(null); // Deselect the game date if it's already selected
+      setSelectedGameDate(null);
     } else {
-      setSelectedGameDate(gameDate); // Select the clicked game date
+      setSelectedGameDate(gameDate);
     }
   };
 
@@ -203,6 +213,23 @@ const handleEdit = (stat) => {
             {players.map((player) => (
               <option key={player.id} value={player.id}>
                 {player.first_name} {player.last_name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="game">Game</label>
+          <select
+            id="game"
+            value={gameId}
+            onChange={(e) => setGameId(e.target.value)}
+            required
+          >
+            <option value="">Select a game</option>
+            {games.map((game) => (
+              <option key={game.id} value={game.id}>
+                {formatDate(game.game_date)}: {game.home_team_name} vs {game.away_team_name}
               </option>
             ))}
           </select>
@@ -351,19 +378,19 @@ const handleEdit = (stat) => {
           </div>
         </div>
 
-         <button type="submit" className="submit-button">Submit</button>
-         {successMessage && (
-           <div className="success-message">
-             {successMessage}
-           </div>
-         )}
-         {errorMessage && (
-           <div className="error-message">
-             {errorMessage}
-           </div>
-         )}
-
+        <button type="submit" className="submit-button">Submit</button>
+        {successMessage && (
+          <div className="success-message">
+            {successMessage}
+          </div>
+        )}
+        {errorMessage && (
+          <div className="error-message">
+            {errorMessage}
+          </div>
+        )}
       </form>
+
       <div className="right-side-content">
         <h2>Game Dates</h2>
         <ul className="game-dates">
@@ -387,7 +414,7 @@ const handleEdit = (stat) => {
                   <p>BLK: {stat.blk}</p>
                   <p>TOV: {stat.tov}</p>
                   <button onClick={() => handleEdit(stat)}>
-                   {statId === stat.id ? 'Unedit' : 'Edit'}
+                    {statId === stat.id ? 'Unedit' : 'Edit'}
                   </button>
                   <button onClick={() => handleDelete(stat.id)}>Delete</button>
                 </div>
@@ -401,3 +428,4 @@ const handleEdit = (stat) => {
 };
 
 export default StatForm;
+
