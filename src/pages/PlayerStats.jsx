@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
+import { Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import defaultImage from '../images/defaultImage.png';
 import './PlayerStats.css';
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PlayerStats = () => {
   const { id } = useParams();
@@ -15,6 +19,10 @@ const PlayerStats = () => {
     spg: 0,
     bpg: 0,
     tpg: 0,
+    fg_percentage: 0,
+    two_p_percentage: 0,
+    three_p_percentage: 0,
+    ft_percentage: 0,
   });
 
   useEffect(() => {
@@ -45,7 +53,10 @@ const PlayerStats = () => {
         const totalSteals = sortedStats.reduce((sum, stat) => sum + stat.stl, 0);
         const totalBlocks = sortedStats.reduce((sum, stat) => sum + stat.blk, 0);
         const totalTurnovers = sortedStats.reduce((sum, stat) => sum + stat.tov, 0);
-
+        const totalFgPercentage = sortedStats.reduce((sum, stat) => sum + stat.fg_percentage, 0);
+        const totalTwoPPercentage = sortedStats.reduce((sum, stat) => sum + stat.two_p_percentage, 0);
+        const totalThreePPercentage = sortedStats.reduce((sum, stat) => sum + stat.three_p_percentage, 0);
+        const totalFtPercentage = sortedStats.reduce((sum, stat) => sum + stat.ft_percentage, 0);
         setAverages({
           ppg: (totalPoints / totalGames).toFixed(1),
           rpg: (totalRebounds / totalGames).toFixed(1),
@@ -53,6 +64,10 @@ const PlayerStats = () => {
           spg: (totalSteals / totalGames).toFixed(1),
           bpg: (totalBlocks / totalGames).toFixed(1),
           tpg: (totalTurnovers / totalGames).toFixed(1),
+          fg_percentage: (totalFgPercentage / totalGames).toFixed(1),
+          two_p_percentage: (totalTwoPPercentage / totalGames).toFixed(1),
+          three_p_percentage: (totalThreePPercentage / totalGames).toFixed(1),
+          ft_percentage: (totalFtPercentage / totalGames).toFixed(1),
         });
       }
     } catch (error) {
@@ -60,22 +75,113 @@ const PlayerStats = () => {
     }
   };
 
+     const PieChart = ({ value, label, color }) => {
+    const [displayValue, setDisplayValue] = useState(0);
+
+    const [chartData, setChartData] = useState({
+      datasets: [
+        {
+          data: [0, 100], // Start with 0% pink, 100% black
+          backgroundColor: [color, '#0e0d0d'], // Fully black initially
+          hoverBackgroundColor: [color, '#0e0d0d'],
+        },
+      ],
+    });
+
+    const options = {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: '70%',
+      plugins: {
+        tooltip: {
+          enabled: false,
+        },
+      },
+      animation: {
+        animateRotate: false,
+        animateScale: false,
+      },
+    };
+
+    useEffect(() => {
+      // Update the chart data with the actual value
+      setChartData({
+        datasets: [
+          {
+            data: [value, 100 - value],
+            backgroundColor: [color, '#e6e1e1'], // Pink part and black part
+            hoverBackgroundColor: [color, '#0e0d0d'],
+          },
+        ],
+      });
+
+      // Incrementally update the displayed value
+      let startValue = 0;
+      const duration = 2000; // Duration of the animation in ms
+      const increment = value / (duration / 20); // Increment value for each update
+
+      const timer = setInterval(() => {
+        startValue += increment;
+        if (startValue >= value) {
+          clearInterval(timer);
+          startValue = value;
+        }
+        setDisplayValue(startValue.toFixed(1));
+      }, 20);
+
+      return () => clearInterval(timer);
+    }, [value, color]);
+
+    return (
+      <div className="pie-chart-wrapper">
+        <Pie data={chartData} options={options} />
+        <div className="pie-chart-label">{`${displayValue}%`}</div>
+      </div>
+    );
+  };
+
   if (!player) {
     return <p></p>;
   }
 
   return (
-    <div className="player-stats-page">
-      <div className="player-details-container">
-        <img 
-          src={player.image ? `data:image/jpeg;base64,${player.image}` : defaultImage} 
-          alt="Player" 
-          className="player-image" 
-        />
-        <h2>{player.first_name} {player.last_name}</h2>
-        <p>Position: {player.position}</p>
-        <p>Sport: {player.sport}</p>
+    <div className="player-details-container">
+      <div className="player-info-charts-container">
+        <div className="player-info-container">
+          <img
+            src={player.image ? `data:image/jpeg;base64,${player.image}` : defaultImage}
+            alt="Player"
+            className="player-image"
+          />
+          <h2>{player.first_name} {player.last_name}</h2>
+          <p>Position: {player.position}</p>
+          <p>Sport: {player.sport}</p>
+        </div>
+
+              <div className="player-stats-container">
+          <div className="pie-chart-group">
+            <div className="pie-chart-item">
+              <p>FG%</p>
+              <PieChart value={averages.fg_percentage} color="#05a0e8" />
+            </div>
+            <div className="pie-chart-item">
+              <p>FT%</p>
+              <PieChart value={averages.ft_percentage} color="#24f109" />
+            </div>
+          </div>
+          <div className="pie-chart-group">
+            <div className="pie-chart-item">
+              <p>3P%</p>
+              <PieChart value={averages.three_p_percentage} color="#ff0808" />
+            </div>
+            <div className="pie-chart-item">
+              <p>2P%</p>
+              <PieChart value={averages.two_p_percentage} color="#FF6384" />
+            </div>
+          </div>
+        </div>
       </div>
+
 
 <div className="boxes-container">
   <div className="box"></div>

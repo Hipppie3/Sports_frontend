@@ -12,7 +12,6 @@ const PlayerDetails = () => {
   const { id } = useParams();
   const [player, setPlayer] = useState(null);
   const [stats, setStats] = useState([]);
-  const [videos, setVideos] = useState([]);
   const [averages, setAverages] = useState({
     ppg: 0,
     rpg: 0,
@@ -29,7 +28,6 @@ const PlayerDetails = () => {
   useEffect(() => {
     fetchPlayer();
     fetchPlayerStats();
-    fetchPlayerVideos();
   }, []);
 
   const fetchPlayer = async () => {
@@ -76,15 +74,6 @@ const PlayerDetails = () => {
       }
     } catch (error) {
       console.error('Error fetching stats:', error);
-    }
-  };
-
-  const fetchPlayerVideos = async () => {
-    try {
-      const response = await axios.get(`http://localhost:3000/video-highlights/player/${id}`);
-      setVideos(response.data.slice(0, 5)); // Limit to latest 5 videos
-    } catch (error) {
-      console.error('Error fetching videos:', error);
     }
   };
 
@@ -172,11 +161,6 @@ const PlayerDetails = () => {
     );
   };
 
-  const getYoutubeEmbedUrl = (url) => {
-    const videoId = url.split('v=')[1];
-    return `https://www.youtube.com/embed/${videoId}`;
-  };
-
   if (!player) {
     return <p>Loading...</p>;
   }
@@ -219,58 +203,11 @@ const PlayerDetails = () => {
         </div>
       </div>
 
-      <div className="boxes-container">
-        <div className="box"></div>
-        <div className="box">
-          PPG
-          <span>
-            <span className="integer">{Math.floor(averages.ppg)}</span>.
-            <span className="decimal">{(averages.ppg % 1).toFixed(1).substring(2)}</span>
-          </span>
-        </div>
-        <div className="box">
-          RPG
-          <span>
-            <span className="integer">{Math.floor(averages.rpg)}</span>.
-            <span className="decimal">{(averages.rpg % 1).toFixed(1).substring(2)}</span>
-          </span>
-        </div>
-        <div className="box">
-          APG
-          <span>
-            <span className="integer">{Math.floor(averages.apg)}</span>.
-            <span className="decimal">{(averages.apg % 1).toFixed(1).substring(2)}</span>
-          </span>
-        </div>
-        <div className="box">
-          SPG
-          <span>
-            <span className="integer">{Math.floor(averages.spg)}</span>.
-            <span className="decimal">{(averages.spg % 1).toFixed(1).substring(2)}</span>
-          </span>
-        </div>
-        <div className="box">
-          BPG
-          <span>
-            <span className="integer">{Math.floor(averages.bpg)}</span>.
-            <span className="decimal">{(averages.bpg % 1).toFixed(1).substring(2)}</span>
-          </span>
-        </div>
-        <div className="box">
-          TPG
-          <span>
-            <span className="integer">{Math.floor(averages.tpg)}</span>.
-            <span className="decimal">{(averages.tpg % 1).toFixed(1).substring(2)}</span>
-          </span>
-        </div>
-        <div className="box"></div>
-      </div>
-
       <div className="player-links-container">
         <ul>
           <li><Link to={`/player/${id}`} className="active-link">Profile</Link></li>
           <li><Link to={`/stats/${id}`}>Stats</Link></li>
-          <li><Link to={`/videos/${id}`} >Videos</Link></li>
+          <li><Link to={`/videos/${id}`}>Videos</Link></li>
         </ul>
       </div>
 
@@ -282,7 +219,7 @@ const PlayerDetails = () => {
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseUp}
         >
-          <h3 className="all-stats">ALL STATS</h3>
+          <h3 className="last-5">LAST 5 GAMES</h3>
           {stats.length > 0 ? (
             <table className="player-stats-table">
               <thead>
@@ -344,27 +281,10 @@ const PlayerDetails = () => {
         </div>
       </div>
 
-      <div className="section-container-video">
-        <div className="player-videos-container1">
+      <div className="section-container">
+        <div className="player-videos-container">
           <h3>LATEST VIDEOS</h3>
-          {videos.length > 0 ? (
-            <div className="video-list">
-              {videos.map((video) => (
-                <div key={video.id} className="video-item">
-                  <iframe
-                    src={getYoutubeEmbedUrl(video.video_url)}
-                    title={video.description}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                  <p>{video.description}</p>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p>No videos available for this player.</p>
-          )}
+          <p>No videos available for this player.</p>
         </div>
       </div>
     </div>
@@ -372,4 +292,3 @@ const PlayerDetails = () => {
 };
 
 export default PlayerDetails;
-

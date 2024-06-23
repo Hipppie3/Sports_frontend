@@ -1,0 +1,144 @@
+.video-form-container {
+ display: flex;
+ flex-direction: column;
+ /* Change to column to stack form on top of videos */
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 20px;
+}
+
+.video-form-form {
+ margin-bottom: 20px;
+ padding: 20px;
+ background-color: #f9f9f9;
+ border-radius: 10px;
+ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.video-form-right-side-content {
+ padding: 20px;
+ background-color: #f0f0f0;
+ border-radius: 10px;
+ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.video-form-group {
+ display: flex;
+ align-items: center;
+ margin-bottom: 10px;
+}
+
+.video-form-group label {
+ width: 80px;
+ margin-right: 10px;
+ font-weight: bold;
+}
+
+.video-form-group input,
+.video-form-group select,
+.video-form-group textarea {
+ flex: 1;
+ padding: 5px;
+ border-radius: 5px;
+ border: 1px solid #ccc;
+}
+
+.video-form-submit-button,
+.video-form-delete-button {
+ display: block;
+ width: 100%;
+ padding: 10px;
+ margin-top: 10px;
+ border: none;
+ border-radius: 5px;
+ font-size: 16px;
+ cursor: pointer;
+}
+
+.video-form-submit-button {
+ background-color: #4CAF50;
+ color: white;
+}
+
+.video-form-submit-button:hover {
+ background-color: #45a049;
+}
+
+.video-form-delete-button {
+ background-color: #f44336;
+ color: white;
+}
+
+.video-form-delete-button:hover {
+ background-color: #e53935;
+}
+
+.video-form-success-message {
+ margin-top: 20px;
+ padding: 10px;
+ background-color: #d4edda;
+ color: #155724;
+ border: 1px solid #c3e6cb;
+ border-radius: 5px;
+ text-align: center;
+}
+
+.video-form-error-message {
+ margin-top: 20px;
+ padding: 10px;
+ background-color: #f8d7da;
+ color: #721c24;
+ border: 1px solid #f5c6cb;
+ border-radius: 5px;
+ text-align: center;
+}
+
+.video-form-video-list {
+ list-style: none;
+ padding: 0;
+ display: flex;
+ flex-wrap: wrap;
+ gap: 10px;
+}
+
+.video-form-video-item {
+ width: 220px;
+ /* Limit the width of each video */
+ margin-bottom: 20px;
+}
+
+.video-form-video-list iframe {
+ width: 100%;
+ height: 150px;
+}
+
+.video-form-video-list p {
+ margin: 5px 0;
+}
+
+.video-form-video-list button {
+ margin-top: 5px;
+ margin-right: 5px;
+ padding: 5px 10px;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+}
+
+.video-form-video-list button:first-of-type {
+ background-color: #ffc107;
+ color: white;
+}
+
+.video-form-video-list button:first-of-type:hover {
+ background-color: #e0a800;
+}
+
+.video-form-video-list button:last-of-type {
+ background-color: #dc3545;
+ color: white;
+}
+
+.video-form-video-list button:last-of-type:hover {
+ background-color: #c82333;
+}

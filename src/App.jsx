@@ -5,8 +5,9 @@ import Home from './pages/Home';
 import Players from './pages/Players';
 import LoginForm from './components/LoginForm';
 import PlayerForm from './forms/PlayerForm';
-import StatForm from './forms/StatForm'; 
-import PlayerDetails from './pages/PlayerDetails'; 
+import StatForm from './forms/StatForm';
+import VideoForm from './forms/VideoForm';  // Import VideoForm
+import PlayerDetails from './pages/PlayerDetails';
 import PlayerStats from './pages/PlayerStats';
 import './App.css';
 
@@ -20,9 +21,10 @@ const App = () => {
           <Route path="/players" element={<Players />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/player-form" element={<PlayerForm />} />
-          <Route path="/player/:id" element={<PlayerDetails />} /> 
+          <Route path="/player/:id" element={<PlayerDetails />} />
           <Route path="/stats/:id" element={<PlayerStats />} />
-          <Route path="/stats-form" element={<StatForm />} /> 
+          <Route path="/stats-form" element={<StatForm />} />
+          <Route path="/video-form" element={<VideoForm />} />  {/* Add VideoForm route */}
         </Routes>
       </div>
     </>
