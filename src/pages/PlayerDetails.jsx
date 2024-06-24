@@ -312,7 +312,10 @@ const PlayerDetails = () => {
               <tbody>
                 {stats.map(stat => (
                   <tr key={stat.id}>
-                    <td className="player-stats-td">{new Date(stat.game_date).toLocaleDateString()}</td>
+<td className="player-stats-td">
+  <Link to={`/game/${stat.game_id}`}>{new Date(stat.game_date).toLocaleDateString()}</Link>
+</td>
+
                     <td className="player-stats-td">{stat.pts}</td>
                     <td className="player-stats-td">{stat.fgm}</td>
                     <td className="player-stats-td">{stat.fga}</td>

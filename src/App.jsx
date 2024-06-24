@@ -10,9 +10,10 @@ import VideoForm from './forms/VideoForm';
 import TeamForm from './forms/TeamForm';
 import GameForm from './forms/GameForm';
 import PlayerDetails from './pages/PlayerDetails';
+import GameDetails from './pages/GameDetails';
+import TeamDetails from './pages/TeamDetails';
 import PlayerStats from './pages/PlayerStats';
 import PlayerVideos from './pages/PlayerVideos';
-
 
 import './App.css';
 
@@ -31,9 +32,10 @@ const App = () => {
           <Route path="/team-form" element={<TeamForm />} />
           <Route path="/game-form" element={<GameForm />} />
           <Route path="/player/:id" element={<PlayerDetails />} />
+          <Route path="/game/:id" element={<GameDetails />} />
+          <Route path="/teams/:id" element={<TeamDetails />} /> {/* Corrected path */}
           <Route path="/videos/:id" element={<PlayerVideos />} />
           <Route path="/stats/:id" element={<PlayerStats />} />
-
         </Routes>
       </div>
     </>
