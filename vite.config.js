@@ -5,7 +5,7 @@ export default defineConfig({
    server: {
     proxy: {
         '/api': { 
-          target: 'http://localhost:3000/', 
+          target: 'https://basketballbackend-715cf6a06fb1.herokuapp.com/', 
           changeOrigin: true, 
           secure: false, 
           rewrite: (path) => path.replace(/^\/api/, "") 
