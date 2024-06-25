@@ -32,7 +32,7 @@ const PlayerForm = () => {
 
   const fetchPlayers = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/players');
+      const response = await axios.get('https://basketballbackend-f112659937b5.herokuapp.com/api/players');
       const sortedPlayers = response.data.sort((a, b) => a.first_name.localeCompare(b.first_name));
       setPlayers(sortedPlayers);
     } catch (error) {
@@ -42,7 +42,7 @@ const PlayerForm = () => {
 
   const fetchTeams = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/teams');
+      const response = await axios.get('https://basketballbackend-f112659937b5.herokuapp.com/api/teams');
       setTeams(response.data);
     } catch (error) {
       console.error('Error fetching teams:', error);
@@ -72,7 +72,7 @@ const PlayerForm = () => {
 
     try {
       if (editing) {
-        await axios.put(`http://localhost:3000/api/players/${editingId}`, formData, {
+        await axios.put(`https://basketballbackend-f112659937b5.herokuapp.com/api/players/${editingId}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -80,7 +80,7 @@ const PlayerForm = () => {
         setEditing(false);
         setEditingId(null);
       } else {
-        await axios.post('http://localhost:3000/api/players', formData, {
+        await axios.post('https://basketballbackend-f112659937b5.herokuapp.com/api/players', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -110,7 +110,7 @@ const PlayerForm = () => {
     const confirmDelete = window.confirm('Are you sure you want to delete this player?');
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:3000/api/players/${id}`);
+        await axios.delete(`https://basketballbackend-f112659937b5.herokuapp.com/api/players/${id}`);
         fetchPlayers();
       } catch (error) {
         console.error('Error deleting player:', error);

@@ -34,7 +34,7 @@ const GameForm = () => {
 
   const fetchGames = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/games');
+      const response = await axios.get('https://basketballbackend-f112659937b5.herokuapp.com/api/games');
       const sortedGames = response.data.sort((a, b) => new Date(a.game_date) - new Date(b.game_date));
       setGames(sortedGames);
     } catch (error) {
@@ -44,7 +44,7 @@ const GameForm = () => {
 
   const fetchTeams = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/teams');
+      const response = await axios.get('https://basketballbackend-f112659937b5.herokuapp.com/api/teams');
       setTeams(response.data);
     } catch (error) {
       console.error('Error fetching teams:', error);
@@ -71,11 +71,11 @@ const GameForm = () => {
 
     try {
       if (editing) {
-        await axios.put(`http://localhost:3000/api/games/${editingId}`, formData);
+        await axios.put(`https://basketballbackend-f112659937b5.herokuapp.com/api/games/${editingId}`, formData);
         setEditing(false);
         setEditingId(null);
       } else {
-        await axios.post('http://localhost:3000/api/games', formData);
+        await axios.post('https://basketballbackend-f112659937b5.herokuapp.com/api/games', formData);
       }
       setGame({
         game_date: '', game_time: '', home_team_id: '', away_team_id: '',
@@ -109,7 +109,7 @@ const handleEdit = (game) => {
     const confirmDelete = window.confirm('Are you sure you want to delete this game?');
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:3000/api/games/${id}`);
+        await axios.delete(`https://basketballbackend-f112659937b5.herokuapp.com/api/games/${id}`);
         fetchGames();
       } catch (error) {
         console.error('Error deleting game:', error);

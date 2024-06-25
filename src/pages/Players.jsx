@@ -28,7 +28,7 @@ const Players = () => {
 
   const fetchPlayers = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/players');
+      const response = await axios.get('https://basketballbackend-f112659937b5.herokuapp.com/api/players');
       const sortedPlayers = response.data.sort((a, b) => a.first_name.localeCompare(b.first_name));
       setPlayers(sortedPlayers);
       console.log(sortedPlayers);

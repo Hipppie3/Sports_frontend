@@ -32,7 +32,7 @@ const PlayerStats = () => {
 
   const fetchPlayer = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/players/${id}`);
+      const response = await axios.get(`https://basketballbackend-f112659937b5.herokuapp.com/api/players/${id}`);
       setPlayer(response.data);
     } catch (error) {
       console.error('Error fetching player:', error);
@@ -41,7 +41,7 @@ const PlayerStats = () => {
 
   const fetchPlayerStats = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/stats/${id}`);
+      const response = await axios.get(`https://basketballbackend-f112659937b5.herokuapp.com/api/stats/${id}`);
       const sortedStats = response.data.sort((a, b) => new Date(a.game_date) - new Date(b.game_date));
       setStats(sortedStats);
 

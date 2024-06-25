@@ -24,7 +24,7 @@ const VideoForm = ({ initialVideoData }) => {
 
   const fetchPlayers = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/players');
+      const response = await axios.get('https://basketballbackend-f112659937b5.herokuapp.com/api/players');
       setPlayers(response.data);
     } catch (error) {
       console.error('Error fetching players:', error);
@@ -33,7 +33,7 @@ const VideoForm = ({ initialVideoData }) => {
 
   const fetchPlayerVideos = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/video-highlights/player/${playerId}`);
+      const response = await axios.get(`https://basketballbackend-f112659937b5.herokuapp.com/video-highlights/player/${playerId}`);
       setVideos(response.data);
     } catch (error) {
       console.error('Error fetching videos:', error);
@@ -52,10 +52,10 @@ const VideoForm = ({ initialVideoData }) => {
     try {
       if (selectedVideoId) {
         // Update existing video
-        await axios.put(`http://localhost:3000/video-highlights/${selectedVideoId}`, formData);
+        await axios.put(`https://basketballbackend-f112659937b5.herokuapp.com/video-highlights/${selectedVideoId}`, formData);
       } else {
         // Create new video
-        await axios.post('http://localhost:3000/video-highlights', formData);
+        await axios.post('https://basketballbackend-f112659937b5.herokuapp.com/video-highlights', formData);
       }
       setSuccessMessage('Video added successfully');
       setErrorMessage('');
@@ -95,7 +95,7 @@ const VideoForm = ({ initialVideoData }) => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:3000/video-highlights/${id}`);
+      await axios.delete(`https://basketballbackend-f112659937b5.herokuapp.com/video-highlights/${id}`);
       setSuccessMessage('Video deleted successfully');
       setTimeout(() => {
         setSuccessMessage('');

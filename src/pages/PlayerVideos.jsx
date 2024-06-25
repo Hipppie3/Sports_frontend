@@ -34,7 +34,7 @@ const PlayerVideos = () => {
 
   const fetchPlayer = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/players/${id}`);
+      const response = await axios.get(`https://basketballbackend-f112659937b5.herokuapp.com/api/players/${id}`);
       setPlayer(response.data);
     } catch (error) {
       console.error('Error fetching player:', error);
@@ -43,7 +43,7 @@ const PlayerVideos = () => {
 
   const fetchPlayerStats = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/stats/${id}`);
+      const response = await axios.get(`https://basketballbackend-f112659937b5.herokuapp.com/api/stats/${id}`);
       const sortedStats = response.data.sort((a, b) => new Date(a.game_date) - new Date(b.game_date));
       setStats(sortedStats);
 
@@ -79,7 +79,7 @@ const PlayerVideos = () => {
 
   const fetchPlayerVideos = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/video-highlights/player/${id}`);
+      const response = await axios.get(`https://basketballbackend-f112659937b5.herokuapp.com/video-highlights/player/${id}`);
       setVideos(response.data); // Fetch all videos
     } catch (error) {
       console.error('Error fetching videos:', error);

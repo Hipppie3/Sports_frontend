@@ -15,10 +15,10 @@ const GameDetails = () => {
 
   const fetchGameDetails = async () => {
     try {
-      const gameResponse = await axios.get(`http://localhost:3000/api/games/${id}`);
+      const gameResponse = await axios.get(`https://basketballbackend-f112659937b5.herokuapp.com/api/games/${id}`);
       setGame(gameResponse.data);
 
-      const statsResponse = await axios.get(`http://localhost:3000/api/stats/game/${id}`);
+      const statsResponse = await axios.get(`https://basketballbackend-f112659937b5.herokuapp.com/api/stats/game/${id}`);
       const stats = statsResponse.data;
 
       const homeTeam = stats.filter(stat => stat.team_id === gameResponse.data.home_team_id);

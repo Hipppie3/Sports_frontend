@@ -29,7 +29,7 @@ const TeamForm = () => {
 
   const fetchTeams = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/teams');
+      const response = await axios.get('https://basketballbackend-f112659937b5.herokuapp.com/api/teams');
       const sortedTeams = response.data.sort((a, b) => a.name.localeCompare(b.name));
       setTeams(sortedTeams);
     } catch (error) {
@@ -57,7 +57,7 @@ const TeamForm = () => {
 
     try {
       if (editing) {
-        await axios.put(`http://localhost:3000/api/teams/${editingId}`, formData, {
+        await axios.put(`https://basketballbackend-f112659937b5.herokuapp.com/api/teams/${editingId}`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -65,7 +65,7 @@ const TeamForm = () => {
         setEditing(false);
         setEditingId(null);
       } else {
-        await axios.post('http://localhost:3000/api/teams', formData, {
+        await axios.post('https://basketballbackend-f112659937b5.herokuapp.com/api/teams', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -95,7 +95,7 @@ const TeamForm = () => {
     const confirmDelete = window.confirm('Are you sure you want to delete this team?');
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:3000/api/teams/${id}`);
+        await axios.delete(`https://basketballbackend-f112659937b5.herokuapp.com/api/teams/${id}`);
         fetchTeams();
       } catch (error) {
         console.error('Error deleting team:', error);
