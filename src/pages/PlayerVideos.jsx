@@ -90,13 +90,14 @@ const PlayerVideos = () => {
     const videoId = url.split('v=')[1];
     return `https://www.youtube.com/embed/${videoId}`;
   };
-  const PieChart = ({ value, color }) => {
+  
+const PieChart = ({ value, label, color }) => {
   const [displayValue, setDisplayValue] = useState(0);
 
   const [chartData, setChartData] = useState({
     datasets: [
       {
-        data: [0, 100], // Start with 0% pink, 100% black
+        data: [0, 100], // Start with 0% color, 100% background
         backgroundColor: [color, '#0e0d0d'], // Fully black initially
         hoverBackgroundColor: [color, '#0e0d0d'],
       },
@@ -118,40 +119,34 @@ const PlayerVideos = () => {
     },
   };
 
- useEffect(() => {
-  // Update the chart data with the actual value
-  setChartData({
-    datasets: [
-      {
-        data: [value, 100 - value],
-        backgroundColor: [color, '#e6e1e1'], // Pink part and black part
-        hoverBackgroundColor: [color, '#0e0d0d'],
-      },
-    ],
-  });
+  useEffect(() => {
+    // Update the chart data with the actual value
+    setChartData({
+      datasets: [
+        {
+          data: value === 100 ? [100, 0] : [value, 100 - value],
+          backgroundColor: [color, '#e6e1e1'], // Color part and background part
+          hoverBackgroundColor: [color, '#0e0d0d'],
+        },
+      ],
+    });
 
-  // Incrementally update the displayed value
-  let startValue = 0;
-  const duration = 2000; // Duration of the animation in ms
-  const increment = Number(value) / (duration / 20); // Increment value for each update
+    // Incrementally update the displayed value
+    let startValue = 0;
+    const duration = 2000; // Duration of the animation in ms
+    const increment = value / (duration / 20); // Increment value for each update
 
-  const timer = setInterval(() => {
-    startValue += increment;
+    const timer = setInterval(() => {
+      startValue += increment;
+      if (startValue >= value) {
+        clearInterval(timer);
+        startValue = value;
+      }
+      setDisplayValue(startValue.toFixed(1));
+    }, 20);
 
-    // Log the startValue to debug
-    console.log('startValue:', startValue);
-
-    if (startValue >= value) {
-      clearInterval(timer);
-      startValue = value;
-    }
-
-    setDisplayValue(Number(startValue).toFixed(1));
-  }, 20);
-
-  return () => clearInterval(timer);
-}, [value, color]);
-
+    return () => clearInterval(timer);
+  }, [value, color]);
 
   return (
     <div className="pie-chart-wrapper">
@@ -160,6 +155,7 @@ const PlayerVideos = () => {
     </div>
   );
 };
+
 
 
 

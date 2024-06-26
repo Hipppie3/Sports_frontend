@@ -75,70 +75,71 @@ const PlayerStats = () => {
     }
   };
 
-     const PieChart = ({ value, label, color }) => {
-    const [displayValue, setDisplayValue] = useState(0);
+const PieChart = ({ value, label, color }) => {
+  const [displayValue, setDisplayValue] = useState(0);
 
-    const [chartData, setChartData] = useState({
+  const [chartData, setChartData] = useState({
+    datasets: [
+      {
+        data: [0, 100], // Start with 0% color, 100% background
+        backgroundColor: [color, '#0e0d0d'], // Fully black initially
+        hoverBackgroundColor: [color, '#0e0d0d'],
+      },
+    ],
+  });
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: '70%',
+    plugins: {
+      tooltip: {
+        enabled: false,
+      },
+    },
+    animation: {
+      animateRotate: false,
+      animateScale: false,
+    },
+  };
+
+  useEffect(() => {
+    // Update the chart data with the actual value
+    setChartData({
       datasets: [
         {
-          data: [0, 100], // Start with 0% pink, 100% black
-          backgroundColor: [color, '#0e0d0d'], // Fully black initially
+          data: value === 100 ? [100, 0] : [value, 100 - value],
+          backgroundColor: [color, '#e6e1e1'], // Color part and background part
           hoverBackgroundColor: [color, '#0e0d0d'],
         },
       ],
     });
 
-    const options = {
-      responsive: true,
-      maintainAspectRatio: false,
-      cutout: '70%',
-      plugins: {
-        tooltip: {
-          enabled: false,
-        },
-      },
-      animation: {
-        animateRotate: false,
-        animateScale: false,
-      },
-    };
+    // Incrementally update the displayed value
+    let startValue = 0;
+    const duration = 2000; // Duration of the animation in ms
+    const increment = value / (duration / 20); // Increment value for each update
 
-    useEffect(() => {
-      // Update the chart data with the actual value
-      setChartData({
-        datasets: [
-          {
-            data: [value, 100 - value],
-            backgroundColor: [color, '#e6e1e1'], // Pink part and black part
-            hoverBackgroundColor: [color, '#0e0d0d'],
-          },
-        ],
-      });
+    const timer = setInterval(() => {
+      startValue += increment;
+      if (startValue >= value) {
+        clearInterval(timer);
+        startValue = value;
+      }
+      setDisplayValue(startValue.toFixed(1));
+    }, 20);
 
-      // Incrementally update the displayed value
-      let startValue = 0;
-      const duration = 2000; // Duration of the animation in ms
-      const increment = value / (duration / 20); // Increment value for each update
+    return () => clearInterval(timer);
+  }, [value, color]);
 
-      const timer = setInterval(() => {
-        startValue += increment;
-        if (startValue >= value) {
-          clearInterval(timer);
-          startValue = value;
-        }
-        setDisplayValue(startValue.toFixed(1));
-      }, 20);
+  return (
+    <div className="pie-chart-wrapper">
+      <Pie data={chartData} options={options} />
+      <div className="pie-chart-label">{`${displayValue}%`}</div>
+    </div>
+  );
+};
 
-      return () => clearInterval(timer);
-    }, [value, color]);
-
-    return (
-      <div className="pie-chart-wrapper">
-        <Pie data={chartData} options={options} />
-        <div className="pie-chart-label">{`${displayValue}%`}</div>
-      </div>
-    );
-  };
 
   if (!player) {
     return <p></p>;
