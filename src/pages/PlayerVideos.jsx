@@ -90,8 +90,7 @@ const PlayerVideos = () => {
     const videoId = url.split('v=')[1];
     return `https://www.youtube.com/embed/${videoId}`;
   };
-  
-const PieChart = ({ value, label, color }) => {
+const PieChart = ({ value, color }) => {
   const [displayValue, setDisplayValue] = useState(0);
 
   const [chartData, setChartData] = useState({
@@ -120,11 +119,14 @@ const PieChart = ({ value, label, color }) => {
   };
 
   useEffect(() => {
-    // Update the chart data with the actual value
+    // Adjust the data for the pie chart
+    const adjustedValue = value === 100 ? 100 : value;
+    const remainingValue = 100 - adjustedValue;
+    
     setChartData({
       datasets: [
         {
-          data: value === 100 ? [100, 0] : [value, 100 - value],
+          data: [adjustedValue, remainingValue],
           backgroundColor: [color, '#e6e1e1'], // Color part and background part
           hoverBackgroundColor: [color, '#0e0d0d'],
         },
@@ -134,13 +136,13 @@ const PieChart = ({ value, label, color }) => {
     // Incrementally update the displayed value
     let startValue = 0;
     const duration = 2000; // Duration of the animation in ms
-    const increment = value / (duration / 20); // Increment value for each update
+    const increment = adjustedValue / (duration / 20); // Increment value for each update
 
     const timer = setInterval(() => {
       startValue += increment;
-      if (startValue >= value) {
+      if (startValue >= adjustedValue) {
         clearInterval(timer);
-        startValue = value;
+        startValue = adjustedValue;
       }
       setDisplayValue(startValue.toFixed(1));
     }, 20);
