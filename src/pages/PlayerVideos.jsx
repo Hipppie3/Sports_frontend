@@ -90,6 +90,8 @@ const PlayerVideos = () => {
     const videoId = url.split('v=')[1];
     return `https://www.youtube.com/embed/${videoId}`;
   };
+
+  
 const PieChart = ({ value, color }) => {
   const [displayValue, setDisplayValue] = useState(0);
 
@@ -97,8 +99,8 @@ const PieChart = ({ value, color }) => {
     datasets: [
       {
         data: [0, 100], // Start with 0% color, 100% background
-        backgroundColor: [color, '#0e0d0d'], // Fully black initially
-        hoverBackgroundColor: [color, '#0e0d0d'],
+        backgroundColor: [color, '#e6e1e1'], // Fully black initially
+        hoverBackgroundColor: [color, '#e6e1e1'],
       },
     ],
   });
@@ -119,16 +121,15 @@ const PieChart = ({ value, color }) => {
   };
 
   useEffect(() => {
-    // Adjust the data for the pie chart
-    const adjustedValue = value === 100 ? 100 : value;
+    const adjustedValue = Math.round(value * 10) / 10; // Ensuring value is rounded to 1 decimal place
     const remainingValue = 100 - adjustedValue;
-    
+
     setChartData({
       datasets: [
         {
-          data: [adjustedValue, remainingValue],
+          data: adjustedValue === 100 ? [100, 0] : [adjustedValue, remainingValue],
           backgroundColor: [color, '#e6e1e1'], // Color part and background part
-          hoverBackgroundColor: [color, '#0e0d0d'],
+          hoverBackgroundColor: [color, '#e6e1e1'],
         },
       ],
     });
@@ -157,7 +158,6 @@ const PieChart = ({ value, color }) => {
     </div>
   );
 };
-
 
 
 

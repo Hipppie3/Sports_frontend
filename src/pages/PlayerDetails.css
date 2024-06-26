@@ -202,8 +202,8 @@
 
 .pie-chart-wrapper {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
 }
 
 .pie-chart-label {
@@ -211,7 +211,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
 }
 

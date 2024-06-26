@@ -148,7 +148,6 @@ const PieChart = ({ value, color }) => {
         },
       ],
     });
-    console.log('FG% value:', averages.fg_percentage);
 
     // Incrementally update the displayed value
     let startValue = 0;
