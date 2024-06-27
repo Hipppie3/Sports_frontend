@@ -193,7 +193,7 @@ const PieChart = ({ value, color }) => {
             alt="Player"
             className="player-image"
           />
-          <h2>{player.first_name} {player.last_name}</h2>
+          <h2 className="player-name">{player.first_name} {player.last_name}</h2>
           <p>Position: {player.position}</p>
         </div>
 
