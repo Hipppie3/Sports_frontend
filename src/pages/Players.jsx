@@ -28,7 +28,7 @@ const Players = () => {
 
   const fetchPlayers = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/players'); // Use /api to leverage Vite's proxy in development
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/players`);
       const sortedPlayers = response.data.sort((a, b) => a.first_name.localeCompare(b.first_name));
       setPlayers(sortedPlayers);
       console.log(sortedPlayers);
