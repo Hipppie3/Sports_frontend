@@ -38,7 +38,7 @@ const StatForm = ({ initialStatData }) => {
 
   const fetchPlayers = async () => {
     try {
-      const response = await axios.get('https://basketballbackend-f112659937b5.herokuapp.com/api/players');
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/players`);
       setPlayers(response.data);
     } catch (error) {
       console.error('Error fetching players:', error);
@@ -47,7 +47,7 @@ const StatForm = ({ initialStatData }) => {
 
   const fetchGames = async () => {
     try {
-      const response = await axios.get('https://basketballbackend-f112659937b5.herokuapp.com/api/games');
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/games`);
       setGames(response.data);
     } catch (error) {
       console.error('Error fetching games:', error);
@@ -56,7 +56,7 @@ const StatForm = ({ initialStatData }) => {
 
 const fetchPlayerStats = async () => {
   try {
-    const response = await axios.get(`https://basketballbackend-f112659937b5.herokuapp.com/api/stats/${playerId}`);
+    const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/stats/${playerId}`);
     const sortedStats = response.data.sort((a, b) => new Date(a.game_date) - new Date(b.game_date));
     setStats(sortedStats.map(stat => {
       const gameDate = new Date(stat.game_date);
@@ -111,10 +111,10 @@ const handleSubmit = async (e) => {
 
   try {
     if (statId) {
-      await axios.put(`https://basketballbackend-f112659937b5.herokuapp.com/api/stats/${statId}`, formData);
+      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/stats/${statId}`, formData);
       setSuccessMessage('Stats updated successfully');
     } else {
-      await axios.post('https://basketballbackend-f112659937b5.herokuapp.com/api/stats', formData);
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/stats`, formData);
       setSuccessMessage('Stats added successfully');
     }
     setErrorMessage('');
@@ -176,7 +176,7 @@ const handleEdit = (stat) => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`https://basketballbackend-f112659937b5.herokuapp.com/api/stats/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/stats/${id}`);
       setSuccessMessage('Stats deleted successfully');
       setTimeout(() => {
         setSuccessMessage('');

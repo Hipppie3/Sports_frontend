@@ -19,7 +19,7 @@ const LoginForm = () => {
         console.log('Sending login request with:', { username, password });
       }
 
-      const response = await axios.post('https://basketballbackend-f112659937b5.herokuapp.com/api/auth/login', { username, password });
+      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/login`, { username, password });
 
       if (response.status === 200) {
         console.log('Login successful:', response.data);

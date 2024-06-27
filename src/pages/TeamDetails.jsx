@@ -13,7 +13,7 @@ const TeamDetails = () => {
 
   const fetchTeamDetails = async () => {
     try {
-      const response = await axios.get(`https://basketballbackend-f112659937b5.herokuapp.com/api/players/team/${id}`);
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/players/team/${id}`);
       setPlayers(response.data);
     } catch (error) {
       console.error('Error fetching team details:', error);

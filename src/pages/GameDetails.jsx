@@ -15,10 +15,10 @@ const GameDetails = () => {
 
   const fetchGameDetails = async () => {
     try {
-      const gameResponse = await axios.get(`https://basketballbackend-f112659937b5.herokuapp.com/api/games/${id}`);
+      const gameResponse = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/games/${id}`);
       setGame(gameResponse.data);
 
-      const statsResponse = await axios.get(`https://basketballbackend-f112659937b5.herokuapp.com/api/stats/game/${id}`);
+      const statsResponse = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/stats/game/${id}`);
       const stats = statsResponse.data;
 
       const homeTeam = stats.filter(stat => stat.team_id === gameResponse.data.home_team_id);
