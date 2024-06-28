@@ -95,7 +95,7 @@ const VideoForm = ({ initialVideoData }) => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`https://basketballbackend-f112659937b5.herokuapp.com/video-highlights/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/video-highlights/${id}`);
       setSuccessMessage('Video deleted successfully');
       setTimeout(() => {
         setSuccessMessage('');
