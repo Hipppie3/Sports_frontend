@@ -58,7 +58,7 @@ const Players = () => {
                 <img 
                   src={player.image ? `data:image/jpeg;base64,${player.image}` : defaultImage} 
                   alt="Player" 
-                  className="player-image" 
+                  className="players-image" 
                 />
                 <p className="player-name">{player.first_name} {player.last_name}</p>
                 <p className="player-sport">{player.sport}</p>

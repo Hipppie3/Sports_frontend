@@ -1,0 +1,41 @@
+.home-container {
+ text-align: center;
+ margin: 20px;
+ position: relative;
+ font-size: 30px;
+ color: green
+}
+
+.video-container {
+ position: relative;
+ width: 80%;
+ /* Reduce width to fit smaller screens */
+ max-width: 844px;
+ /* Ensure the max width is 844px */
+ margin: 0 auto;
+ padding-bottom: 56.25%;
+ /* 16:9 aspect ratio */
+ overflow: hidden;
+}
+
+.responsive-iframe {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 60%;
+}
+
+
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 380px) {
+ .video-container {
+  width: 50%;
+  /* Full width for smaller screens */
+  padding-bottom: 56.25%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+ }
+
+}
