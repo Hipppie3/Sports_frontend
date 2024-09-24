@@ -4,7 +4,7 @@ import './Home.css';
 const Home = () => {
   return (
     <div className="home-container">
-      <h1>HULK of the Week</h1>
+      <h1>HULK</h1>
       <div className="video-container">
         <iframe
           className="responsive-iframe"
