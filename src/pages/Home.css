@@ -3,7 +3,7 @@
  margin: 20px;
  position: relative;
  font-size: 30px;
- color: green
+ color: black;
 }
 
 .video-container {
@@ -41,24 +41,12 @@
 .teams-table td {
  border: 1px solid #ddd;
  padding: 8px;
+ text-align: center;
 }
 
 .teams-table th {
  background-color: #f2f2f2;
- text-align: center;
 }
-
-.teams-table td {
- text-align: center;
-}
-
-.team-image {
- width: 50px;
- height: 50px;
- object-fit: cover;
- border-radius: 5px;
-}
-
 
 /* Responsive adjustments for smaller screens */
 @media (max-width: 380px) {
