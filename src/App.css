@@ -1,14 +1,7 @@
-/* App.css */
-
-.content {
- padding-top: 6rem;
- /* Ensure content is below the navbar */
-}
-
 body,
 html {
- margin: 0;
- padding: 0;
- width: 100%;
- height: 100%;
+  margin: 0;
+  width: 100%;
+  background-color:black; /* Keep black background if needed */
 }
+

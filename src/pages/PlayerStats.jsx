@@ -111,7 +111,7 @@ const PieChart = ({ value, color }) => {
       datasets: [
         {
           data: adjustedValue === 100 ? [100, 0] : [adjustedValue, remainingValue],
-          backgroundColor: [color, '#e6e1e1'], // Color part and background part
+          backgroundColor: [color, '#fffcfc'], // Color part and background part
           hoverBackgroundColor: [color, '#e6e1e1'],
         },
       ],

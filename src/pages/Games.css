@@ -1,0 +1,90 @@
+/* Overall container for the games page */
+.gameContainer {
+ text-align: center;
+ color: white;
+ padding: 20px;
+}
+
+/* Games List */
+.games-list {
+ list-style-type: none;
+ padding: 0;
+ margin: 0;
+}
+
+/* Each Game Card */
+.games-list li {
+ background-color: rgba(255, 255, 255, 0.1);
+ /* Slight transparency for a card effect */
+ border: 1px solid rgba(255, 255, 255, 0.2);
+ /* Light border for separation */
+ border-radius: 8px;
+ margin: 15px 0;
+ padding: 15px;
+ transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Card Hover Effect */
+.games-list li:hover {
+ transform: translateY(-5px);
+ /* Slight lift effect on hover */
+ box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+ /* Add a shadow on hover */
+}
+
+/* Game Link Styles */
+.games-list a {
+ text-decoration: none;
+ color: #3498db;
+ /* Link color */
+ font-weight: bold;
+ font-size: 1.1rem;
+ display: block;
+ transition: color 0.2s ease;
+}
+
+/* Hover effect for the links */
+.games-list a:hover {
+ color: #e74c3c;
+ /* Changes color on hover */
+}
+
+/* Game Info Layout */
+.games-list li div {
+ display: flex;
+ justify-content: space-between;
+ /* Space between game details */
+ align-items: center;
+ color: white;
+ /* Keep text color white */
+}
+
+.games-list li div span {
+ display: block;
+ font-size: 1rem;
+ color: #fff;
+ /* Ensures all game details text stays white */
+}
+
+/* Date formatting */
+.games-list .game-date {
+ font-size: 1rem;
+ font-weight: bold;
+ color: #ddd;
+}
+
+/* Media Query for responsiveness */
+@media (max-width: 768px) {
+ .games-list li {
+  padding: 10px;
+ }
+
+ .games-list a {
+  font-size: 1rem;
+ }
+
+ .games-list li div {
+  flex-direction: column;
+  text-align: center;
+ }
+}

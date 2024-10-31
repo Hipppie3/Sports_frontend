@@ -39,7 +39,6 @@ const Players = () => {
 
   return (
     <div className="players-page">
-      <h1>PLAYERS</h1>
       <div className="search-container">
         <input
           type="text"
@@ -57,9 +56,7 @@ const Players = () => {
               <Link to={`/player/${player.id}`} className="player-link">
                 <img 
                   src={player.image ? `data:image/jpeg;base64,${player.image}` : defaultImage} 
-                  alt="Player" 
-                  className="players-image" 
-                />
+                  alt="Player" className="player-image"/>
                 <p className="player-name">{player.first_name} {player.last_name}</p>
                 <p className="player-sport">{player.sport}</p>
               </Link>

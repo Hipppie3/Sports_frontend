@@ -1,21 +1,134 @@
-.player-details-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+.playerMain {
+color: white;
+max-width: 100%;
 }
+
 
 .player-info-charts-container {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  flex-wrap: wrap;
+display: flex;
+width: 100%;
+align-items: center; /* Aligns items vertically in the center */
+justify-items: center; /* Aligns items horizontally in the center of their grid cells */
+padding: 2rem 0;
 }
 
-.player-image{
-  height: 200px;
-  width: 200px;
+.player-info-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+flex: 0 0 auto;
+/* The player info container will only take up as much space as it needs */
 }
+
+.pie-chart-left,
+.pie-chart-right {
+flex: 1;
+/* Allow the pie charts to take up equal space on the sides */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.pie-chart-item {
+display: flex;
+flex-direction: column;
+align-items: center;
+/* Adjust gap between text and canvas */
+}
+
+.pie-chart-item:nth-child(1) {
+padding-bottom: 3rem;
+/* Apply custom padding */
+}
+
+.pie-chart-item p {
+margin-bottom: 0;
+/* Remove or adjust margin to bring text closer */
+padding-top: 0;
+/* Ensure no padding is adding space */
+font-weight: bold;
+font-size: 20px;
+}
+
+.pie-chart-label {
+position: absolute;
+top: 53% !important;
+/* Adjust based on your needs */
+left: 53% !important;
+/* Adjust based on your needs */
+transform: translate(-50%, -50%);
+font-size: 20px !important;
+font-weight: bold;
+}
+
+.player-image1 {
+padding-top: 2rem;
+padding-bottom: 1rem;
+height: 300px;
+width: 300px;
+border-radius: 50%;
+}
+
+.player-name {
+  font-size: 30px;
+}
+.player-position {
+  padding-top: .5rem;
+  margin: 0;
+}
+
+.boxes-container {
+width: 100%;
+max-width: 100%;
+height: 9rem;
+display: flex;
+align-items: center;
+border: 1px solid #ddd;
+box-sizing: border-box;
+margin-bottom: 0;
+color: white;
+}
+
+.box {
+flex: 1;
+height: 100%;
+background-color: black !important;
+box-sizing: border-box;
+border-right: 1px solid white;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+font-weight: 600;
+font-size: 17px;
+}
+
+.box:last-child {
+border-right: none;
+}
+
+.box span {
+font-weight: 900;
+font-size: 25px;
+}
+
+.box span .decimal {
+margin-left: 2px;
+}
+
+.latest-video-title {
+padding-left: .5rem;
+font-size: 20px;
+}
+
+.player-stats-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 
 .player-info-container {
   display: flex;
@@ -24,229 +137,175 @@
   width: 45%;
 }
 
-.latest-video-title {
-  padding-left: .5rem;
-  font-size: 20px;
-}
-
-.player-stats-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;.player-info-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 45%;
-    }
-  width: 45%;
+width: 45%;
 }
 
 .player-stats-table-container {
-  overflow-x: auto;
-  white-space: nowrap;
-  cursor: grab;
-  max-width: 100%;
-  margin: 20px 0;
+overflow-x: auto;
+white-space: nowrap;
+cursor: grab;
+max-width: 100%;
+margin: 20px 0;
 }
 
 .player-stats-table-container:active {
-  cursor: grabbing;
+cursor: grabbing;
 }
 
 .player-stats-table {
-  border-collapse: collapse;
-  width: 100%;
+border-collapse: collapse;
+width: 100%;
 }
 
 .player-stats-th,
 .player-stats-td {
-  border-top: 1px solid #ddd;
-  border-left: none;
-  border-right: none;
-  padding: 6px;
-  font-size: 14px;
-  text-align: center;
-  vertical-align: middle;
+border-top: 1px solid #ddd;
+border-left: none;
+border-right: none;
+padding: 6px;
+font-size: 14px;
+text-align: center;
+vertical-align: middle;
+}
+
+.player-stats-td a {
+color: red;
+/* Change to your desired color */
+text-decoration: bold;
+/* Optional: remove the underline */
+}
+
+.player-stats-td a:hover {
+color: #00ff00;
+/* Change color on hover if desired */
 }
 
 .player-stats-th {
-  background-color: #f2f2f2;
-  text-align: left;
+background-color: black !important;
+text-align: left;
+padding-left: 1.1rem !important;
+}
+
+.player-links-container {
+  padding-left: 1rem !important;
 }
 
 .player-videos-container,
 .player-links-container {
-  width: 100%;
-  margin: 20px 0;
+width: 100%;
+margin: 20px 0;
+padding-left: 2rem;
 }
 
 .player-videos-container ul,
 .player-links-container ul {
-  list-style-type: none;
-  padding: 0;
+list-style-type: none;
+padding: 0;
 }
 
 .player-videos-container li,
 .player-links-container li {
-  margin: 10px 0;
-}
-
-.player-links-container {
-  width: 100%;
-  max-width: 100%;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  padding: 1rem 0;
-  box-sizing: border-box;
-  margin: 0;
-}
-
-.player-links-container ul {
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
-  margin: 0;
-}
-
-.player-links-container li {
-  margin: 0 2rem;
+margin: 10px 0;
 }
 
 .player-links-container a {
-  text-decoration: none;
-  color: #030303;
+margin-left: 1rem;
+}
+
+.player-links-container {
+width: 100%;
+max-width: 100%;
+height: 3rem;
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: black !important;
+border: 1px solid #ddd;
+padding: 1rem 0;
+box-sizing: border-box;
+margin: 0;
+}
+
+.player-links-container ul {
+display: flex;
+justify-content: flex-start;
+width: 100%;
+margin: 0;
+}
+
+.player-links-container li {
+margin: 0 2rem;
+}
+
+.player-links-container a {
+text-decoration: none;
+color: white !important;
 }
 
 .player-links-container a:hover {
-  text-decoration: underline;
+text-decoration: underline;
 }
 
 .active-link {
-  font-weight: bold;
-  text-decoration: underline;
-  color: black;
+font-weight: bold;
+text-decoration: underline;
+color: black;
 }
 
 .section-container-video {
-  width: 90%; /* Updated to take full width */
-  border: 1px solid #ddd;
-  margin: 20px 0;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  overflow-x: auto;
+width: 90%;
+/* Updated to take full width */
+border: 1px solid #ddd;
+margin: 20px 0;
+padding: 10px 20px;
+display: flex;
+justify-content: center;
+flex-direction: column;
+overflow-x: auto;
 }
-.player-videos-container1{
-  max-width: 100%;
+
+.player-videos-container1 {
+max-width: 100%;
 }
+
 .all-stats {
- padding-bottom: 1rem;
-}
-
-.boxes-container {
-  width: 100%;
-  max-width: 100%;
-  height: 9rem;
-  display: flex;
-  align-items: center;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  box-sizing: border-box;
-  margin-bottom: 0;
-}
-
-.box {
-  flex: 1;
-  height: 100%;
-  background-color: #e0e0e0;
-  box-sizing: border-box;
-  border-right: 1px solid white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  font-size: 17px;
-}
-
-.box:last-child {
-  border-right: none;
-}
-
-.box span {
-  font-weight: 900;
-  font-size: 25px;
-}
-
-.box span .decimal {
-  margin-left: 2px;
-}
-
-.pie-chart-group {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  flex-wrap: wrap;
-}
-
-.pie-chart-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 10px;
-  width: 45%;
-}
-
-.pie-chart-item p {
-  margin: 0;
-  padding-bottom: 5px;
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.pie-chart-wrapper {
-  position: relative;
-  width: 130px;
-  height: 130px;
-}
-
-.pie-chart-label {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 20px;
-  font-weight: bold;
+padding-bottom: 1rem;
 }
 
 .video-list {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  width: 100%;
+display: flex;
+flex-wrap: nowrap;
+overflow-x: auto;
+width: 100%;
 }
 
 .video-item {
-  flex: 0 0 300px; /* Updated to ensure videos take up equal width */
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+flex: 0 0 300px;
+/* Updated to ensure videos take up equal width */
+margin: 10px;
+display: flex;
+flex-direction: column;
+align-items: center;
 }
 
 .video-item iframe {
-  width: 100%;
-  height: 205px;
+width: 100%;
+height: 205px;
 }
 
 .video-item p {
-  margin-top: 5px;
-  font-size: 18px;
-  text-align: center;
+margin-top: 5px;
+font-size: 18px;
+text-align: center;
 }
+
+
+
+
+
+
+
+
+
+
+

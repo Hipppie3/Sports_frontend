@@ -114,7 +114,7 @@ const PieChart = ({ value, color }) => {
     datasets: [
       {
         data: [0, 100], // Start with 0% color, 100% background
-        backgroundColor: [color, '#e6e1e1'], // Fully black initially
+        backgroundColor: [color, '#080707'], // Fully black initially
         hoverBackgroundColor: [color, '#e6e1e1'],
       },
     ],
@@ -143,7 +143,7 @@ const PieChart = ({ value, color }) => {
       datasets: [
         {
           data: adjustedValue === 100 ? [100, 0] : [adjustedValue, remainingValue],
-          backgroundColor: [color, '#e6e1e1'], // Color part and background part
+          backgroundColor: [color, '#fffbfb'], // Color part and background part
           hoverBackgroundColor: [color, '#e6e1e1'],
         },
       ],
@@ -185,41 +185,43 @@ const PieChart = ({ value, color }) => {
   }
 
   return (
-    <div className="player-details-container">
-      <div className="player-info-charts-container">
-        <div className="player-info-container">
-          <img
-            src={player.image ? `data:image/jpeg;base64,${player.image}` : defaultImage}
-            alt="Player"
-            className="player-image"
-          />
-          <h2 className="player-name">{player.first_name} {player.last_name}</h2>
-          <p>Position: {player.position}</p>
-        </div>
+    <div className='playerMain'>
+<div className="player-details-container">
+  <div className="player-info-charts-container">
 
-        <div className="player-stats-container">
-          <div className="pie-chart-group">
-            <div className="pie-chart-item">
-              <p>FG%</p>
-              <PieChart value={averages.fg_percentage} color="#05a0e8" />
-            </div>
-            <div className="pie-chart-item">
-              <p>FT%</p>
-              <PieChart value={averages.ft_percentage} color="#24f109" />
-            </div>
-          </div>
-          <div className="pie-chart-group">
-            <div className="pie-chart-item">
-              <p>3P%</p>
-              <PieChart value={averages.three_p_percentage} color="#ff0808" />
-            </div>
-            <div className="pie-chart-item">
-              <p>2P%</p>
-              <PieChart value={averages.two_p_percentage} color="#FF6384" />
-            </div>
-          </div>
-        </div>
-      </div>
+  <div className="pie-chart-left">
+    <div className="pie-chart-item">
+      <p>FG%</p>
+      <PieChart value={averages.fg_percentage} color="#21f7f7" />
+    </div>
+    <div className="pie-chart-item">
+      <p>FT%</p>
+      <PieChart value={averages.ft_percentage} color="#24f109" />
+    </div>
+  </div>
+
+  <div className="player-info-container">
+    <img
+      src={player.image ? `data:image/jpeg;base64,${player.image}` : defaultImage}
+      alt="Player"
+      className="player-image1"
+    />
+    <h2 className="player-name">{player.first_name} {player.last_name}</h2>
+    <p className='player-position'>{player.position}</p>
+  </div>
+
+  <div className="pie-chart-right">
+    <div className="pie-chart-item">
+      <p>3P%</p>
+      <PieChart value={averages.three_p_percentage} color="#0831ff" />
+    </div>
+    <div className="pie-chart-item">
+      <p>2P%</p>
+      <PieChart value={averages.two_p_percentage} color="#fb0137" />
+    </div>
+  </div>
+</div>
+
 
       <div className="boxes-container">
         <div className="box"></div>
@@ -372,6 +374,7 @@ const PieChart = ({ value, color }) => {
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 };

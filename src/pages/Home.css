@@ -1,61 +1,101 @@
+/* Overall Home Container */
 .home-container {
- text-align: center;
- margin: 20px;
- position: relative;
- font-size: 30px;
- color: black;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ padding: 20px;
+ background-color:black;
+ height: 100vh;
+ color: white;
 }
 
-.video-container {
- position: relative;
- width: 80%;
- /* Reduce width to fit smaller screens */
- max-width: 844px;
- /* Ensure the max width is 844px */
- margin: 0 auto;
- padding-bottom: 56.25%;
- /* 16:9 aspect ratio */
+/* Section 1 - Standings */
+.section1 {
+ width: 100%;
+ max-width: 1200px;
+ margin-bottom: 30px;
+}
+
+.section1 h2 {
+ font-size: 2rem;
+ text-align: center;
+}
+
+/* Table Styling */
+table {
+ width: 100%;
+ border-collapse: collapse;
+ background-color: #fff;
+ box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+ border-radius: 8px;
  overflow: hidden;
 }
 
-.responsive-iframe {
- position: absolute;
- top: 0;
- left: 0;
- width: 100%;
- height: 60%;
-}
-
-.home-container {
- padding: 20px;
+th,
+td {
+ padding: 15px;
  text-align: center;
 }
 
-.teams-table {
- width: 80%;
- margin: 20px auto;
- border-collapse: collapse;
+th {
+ background-color: #7a7a7a;
+ color: white;
+ font-size: 1.1rem;
 }
 
-.teams-table th,
-.teams-table td {
- border: 1px solid #ddd;
- padding: 8px;
- text-align: center;
+td {
+ font-size: 1rem;
+ color: #333;
 }
 
-.teams-table th {
+tr:nth-child(even) {
  background-color: #f2f2f2;
 }
 
-/* Responsive adjustments for smaller screens */
-@media (max-width: 380px) {
- .video-container {
-  width: 50%;
-  /* Full width for smaller screens */
-  padding-bottom: 56.25%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+/* Hover effect on table rows */
+tr:hover {
+ background-color: #ddd;
+}
+
+/* Section 2 - Sponsors */
+.section2 {
+ width: 100%;
+ max-width: 1160px;
+ text-align: center;
+ padding: 20px;
+ background-color: #ffffff;
+ box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+ border-radius: 8px;
+}
+
+.section2 h1 {
+ font-size: 2rem;
+ margin-bottom: 15px;
+ color: #333;
+}
+
+.section2 p {
+ font-size: 1.2rem;
+ color: #555;
+ line-height: 1.6;
+}
+
+/* Media Query for responsiveness */
+@media (max-width: 768px) {
+ .home-container {
+  padding: 10px;
  }
 
+ table {
+  font-size: 0.9rem;
+ }
+
+ th,
+ td {
+  padding: 10px;
+ }
+
+ .section2 p {
+  font-size: 1rem;
+ }
 }

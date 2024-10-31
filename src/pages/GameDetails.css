@@ -4,6 +4,21 @@
  flex-direction: column;
  align-items: center;
  margin: 20px;
+ border-bottom: 4px black solid;
+ color: white;
+}
+.game-details-container a {
+ color: #ff6347;
+ /* Change to the desired color, e.g., tomato */
+ text-decoration: none;
+ /* Remove underline */
+}
+
+.game-details-container a:hover {
+ color: #ff4500;
+ /* Change to the desired hover color */
+ text-decoration: underline;
+ /* Optional: add underline on hover */
 }
 
 .game-info {
@@ -36,9 +51,17 @@
  border: 1px solid #ddd;
  padding: 8px;
  text-align: center;
+ background-color: black;
+ color: white;
 }
 
 .game-stats-table th {
- background-color: #f2f2f2;
  font-weight: bold;
+}
+
+.home_team_name, 
+.away_team_name {
+ font-size: 30px;
+ padding-left: .5rem;
+ margin: 0;
 }

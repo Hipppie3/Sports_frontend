@@ -1,0 +1,86 @@
+/* Container for the entire team details page */
+.team-details-container {
+ text-align: center;
+ color: white;
+ padding: 20px;
+ background-color: #000000;
+}
+
+/* Team name styling */
+.team_name {
+ font-size: 70px;
+ color: #ffffff;
+ margin-bottom: 40px;
+}
+
+/* Player list grid layout */
+.player-list {
+ display: grid;
+ grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+ gap: 20px;
+ padding: 0;
+ margin: 0;
+ list-style-type: none;
+ /* Removes bullet points */
+}
+
+/* Player card styling */
+.player-list li {
+ background-color: rgba(255, 255, 255, 0.1);
+ border: 1px solid rgba(255, 255, 255, 0.2);
+ border-radius: 8px;
+ padding: 20px;
+ transition: transform 0.2s ease, box-shadow 0.2s ease;
+ text-align: center;
+}
+
+/* Hover effect on player cards */
+.player-list li:hover {
+ transform: translateY(-5px);
+ box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Player image styling */
+.player-list img {
+ width: 100px;
+ height: 100px;
+ border-radius: 50%;
+ object-fit: cover;
+ margin-bottom: 10px;
+}
+
+/* Player name */
+.player-list p {
+ color: #fff;
+ font-size: 18px;
+ margin: 5px 0;
+}
+
+/* Player link styling */
+.player-list a {
+ text-decoration: none;
+ color: #3498db;
+ font-weight: bold;
+ transition: color 0.2s ease;
+}
+
+/* Hover effect on player links */
+.player-list a:hover {
+ color: #2ecc71;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+ .team_name {
+  font-size: 50px;
+ }
+
+ .player-list img {
+  width: 80px;
+  height: 80px;
+ }
+
+ .player-list p {
+  font-size: 16px;
+ }
+}

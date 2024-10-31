@@ -101,10 +101,10 @@ const GameDetails = () => {
   return (
     <div className="game-details-container">
       <div className="game-info">
-        <h2>Game Details</h2>
         <p>Date: {new Date(game.game_date).toLocaleDateString()}</p>
         <p>Time: {game.game_time}</p>
         <p>Location: {game.location}</p>
+        
         {game.video_url && (
           <div className="video-container">
             <iframe
@@ -120,19 +120,11 @@ const GameDetails = () => {
         )}
       </div>
       <div className="team-details">
-        <h3>
-          <Link to={`/teams/${game.home_team_id}`}>{game.home_team_name}</Link>
-        </h3>
-        <p>Score: {game.home_team_points}</p>
-        <h4>Player Stats</h4>
+        <h4 className="home_team_name"><Link to={`/teams/${game.home_team_id}`}>{game.home_team_name}</Link> {game.home_team_points}</h4>
         {renderStatsTable(homeTeamStats)}
       </div>
       <div className="team-details">
-        <h3>
-          <Link to={`/teams/${game.away_team_id}`}>{game.away_team_name}</Link>
-        </h3>
-        <p>Score: {game.away_team_points}</p>
-        <h4>Player Stats</h4>
+        <h4 className="away_team_name"><Link to={`/teams/${game.away_team_id}`}>{game.away_team_name}</Link> {game.away_team_points}</h4>
         {renderStatsTable(awayTeamStats)}
       </div>
     </div>
